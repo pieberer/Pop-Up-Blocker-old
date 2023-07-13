@@ -30,10 +30,6 @@ public class Gameplay {
             countdown();
             Thread.sleep(4000);
             { // the actual game
-                File file = new File("assets/sounds/vslancer.wav");
-                AudioPlayer.setAudio(file);
-                AudioPlayer.playAudio(true);
-                
                 popupc();
                 for(int a = 1; a <= loops; a++) {
                     int bruh = random.nextInt(10 - 1 + 1) + 1;
@@ -116,7 +112,11 @@ public class Gameplay {
     private static Timer timerc;
     private static double timerDisplay;
     private static int thetime = 1;
-    private static void popupc() { // this is the window that shows timer and counts windows closed // TODO: complete this method
+    private static void popupc() { // this is the window that shows timer and counts windows closed
+        File file = new File("assets/sounds/vslancer.wav");
+        AudioPlayer.setAudio(file);
+        AudioPlayer.playAudio(true);
+
         JFrame ppcf = new JFrame("Counter");
         ppcf.setSize(425, 400);
         ppcf.setLocation(Randomizer.JFrameRandomX(425), Randomizer.JFrameRandomY(400));
