@@ -2,6 +2,7 @@ import javax.swing.*;
 
 import QoLTools.AudioPlayer;
 import QoLTools.ExceptionHandler;
+import QoLTools.ScreenDimensions;
 import QoLTools.SwingExtras;
 
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.net.*;
 // haha pp
 public class Gameplay {
     public static void main(String[] args) {
-        popupc();
+        countdown();
     }
 
     public static int closed = 0;
@@ -21,8 +22,6 @@ public class Gameplay {
     private static int delay;
 
     public Gameplay() {
-        winningScreen();
-        popupRun(delay);
         loopCalc(delay, loops);
         delayCalc(loops);
         countdown();
@@ -32,8 +31,16 @@ public class Gameplay {
     private static void countdown() {
         try {
             JFrame cdf = new JFrame("Countdown");
+            ImageIcon wtfbruh = new ImageIcon("assets/icon.png");
+            cdf.setIconImage(wtfbruh.getImage());
             cdf.setSize(250, 250);
             cdf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            int swidth = ScreenDimensions.getWidth();
+            int sheight = ScreenDimensions.getHeight();
+            int swcenter = swidth / 2;
+            int shcenter = sheight / 2;
+            cdf.setLocation(swcenter - 250 / 2, shcenter - 250 / 2);
+
             JPanel cdp = new JPanel();
             cdp.setLayout(new BorderLayout());
             cdp.setBackground(Color.DARK_GRAY);
@@ -75,10 +82,6 @@ public class Gameplay {
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
-    }
-    private static void winningScreen() {
-        SwingExtras.frameDisposeAll(pp9f, pp8f, pp7f, pp6f, pp5f, pp4f, pp3f, pp2f, pp1f, pp0f);
-
     }
 
 
@@ -131,17 +134,14 @@ public class Gameplay {
                     timerDisplay-=0.1;
                     timeLabel.setText(String.format("%.1f", timerDisplay));
                 } else {
-                    theuhhhframeyeah.dispose();
-                    ppcf.dispose();
-                    AudioPlayer.stopAudio();
-                    timerc.stop();
+                    win();
                 }
             }
         });
     }
     private static void popupc() { // this is the window that shows timer and counts windows closed
-        File file = new File("assets/sounds/vslancer.wav");
-        AudioPlayer.setAudio(file);
+        //File file = new File("assets/sounds/vslancer.wav");
+        //AudioPlayer.setAudio(file);
         AudioPlayer.playAudio(true);
 
         ppcf = new JFrame("Counter");
@@ -175,7 +175,7 @@ public class Gameplay {
         ppcf.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                closed++;
+                closed+=1;
                 popupcReinitialize();
             }
         });
@@ -195,6 +195,8 @@ public class Gameplay {
         JPanel goddamnasspanel = new JPanel(new BorderLayout());
         goddamnasspanel.setBackground(Color.DARK_GRAY);
 
+        counter.setText("Pop-ups closed: " + closed);
+
         goddamnasspanel.add(timeLabel , BorderLayout.NORTH);
         goddamnasspanel.add(motivationalLabel, BorderLayout.CENTER);
         goddamnasspanel.add(counter, BorderLayout.SOUTH);
@@ -202,7 +204,7 @@ public class Gameplay {
         theuhhhframeyeah.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                closed++;
+                closed+=1;
                 popupcReinitialize();
             }
         });
@@ -210,23 +212,20 @@ public class Gameplay {
     }
 
 
+    private static void win() {
+        SwingExtras.frameDisposeAll(popups.pp9f, popups.pp8f, popups.pp7f, popups.pp6f, popups.pp5f, popups.pp4f, popups.pp3f, popups.pp2f, popups.pp1f, popups.pp0f);
+        theuhhhframeyeah.dispose();
+        ppcf.dispose();
+        AudioPlayer.stopAudio();
+        timerc.stop();
+    }
 
 
+    
 
-    private static JFrame pp0f;
-    private static JFrame pp1f;
-    private static JFrame pp2f;
-    private static JFrame pp3f;
-    private static JFrame pp4f;
-    private static JFrame pp5f;
-    private static JFrame pp6f;
-    private static JFrame pp7f;
-    private static JFrame pp8f;
-    private static JFrame pp9f;
-
-    private static void retard() {
+    public static void retard() {
         try{
-            SwingExtras.frameDisposeAll(pp9f, pp8f, pp7f, pp6f, pp5f, pp4f, pp3f, pp2f, pp1f, pp0f);
+            SwingExtras.frameDisposeAll(popups.pp9f, popups.pp8f, popups.pp7f, popups.pp6f, popups.pp5f, popups.pp4f, popups.pp3f, popups.pp2f, popups.pp1f, popups.pp0f);
             AudioPlayer.stopAudio();
             File thefile = new File("assets/sounds/fail.wav");
             AudioPlayer.setAudio(thefile);
@@ -257,204 +256,6 @@ public class Gameplay {
             ExceptionHandler.handleException(e);
         }
     }
-    private static void popupRun(int bruh) {
-        switch(bruh) { // dont. ask. anything. especially about the numbers.
-            case 1 :
-                popup0();
-                break;
-            case 2 :
-                popup1();
-                break;
-            case 3 :
-                popup2();
-                break;
-            case 4 :
-                popup3();
-                break;
-            case 5 :
-                popup4();
-                break;
-            case 6 :
-                popup5();
-                break;
-            case 7 :
-                popup6();
-                break;
-            case 8 :
-                popup7();
-                break;
-            case 9 :
-                popup8();
-                break;
-            case 10 :
-                popup9();
-                break;
-        }
-    }
-
-    private static void popup0() {
-        pp0f = new JFrame("HOT CHICKS");
-        pp0f.setSize(348, 275);
-        pp0f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
-        JPanel pp0p = new JPanel();
-        ImageIcon img = new ImageIcon("assets/textures/popups/hot chicks.png");
-        JLabel imageLabel = new JLabel(img);
-        imageLabel.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
-        imageLabel.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                retard();
-            }
-        });
-        JLabel label = new JLabel("HOT CHICKS NEAR YOU");
-        label.setBounds(25, 200, 348, 24);
-        Font font = new Font("Arial", Font.BOLD, 24);
-        label.setFont(font);
-        label.setForeground(Color.WHITE);
-        pp0p.setLayout(null);
-        pp0p.setBackground(Color.BLACK);
-        pp0p.add(imageLabel);
-        pp0p.add(label);
-        pp0f.add(pp0p);
-        pp0f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp0f.setVisible(true);
-    }
-    private static void popup1() {
-        pp1f = new JFrame("DOWNLOAD NOW");
-        pp1f.setSize(300, 200);
-        JPanel pp1p = new JPanel();
-        pp1p.setLayout(null);
-        ImageIcon gif = new ImageIcon("assets/textures/popups/sketchy ass button.gif");
-        JLabel gifLabel = new JLabel(gif);
-        gifLabel.setBounds(25, 10, gif.getIconWidth() + 50, gif.getIconHeight() + 20);
-        gifLabel.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                retard();
-            }
-        });
-        JLabel label = new JLabel("<html>ARE YOU SURE YOU WANT TO DOWNLOAD THE FILE???<html>");
-        label.setBounds(25, 64, 200, 100);
-        pp1p.add(gifLabel);
-        pp1p.add(label);
-        pp1f.add(pp1p);
-        pp1f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp1f.setVisible(true);
-    }
-    private static void popup2() {
-        pp2f = new JFrame();
-        JPanel pp2p = new JPanel();
-        pp2p.setLayout(null);
-        pp2f.add(pp2p);
-        pp2f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp2f.setVisible(true);
-    }
-    private static void popup3() {
-        pp3f = new JFrame();
-        JPanel pp3p = new JPanel();
-        pp3p.setLayout(null);
-        pp3f.add(pp3p);
-        pp3f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp3f.setVisible(true);
-    }
-    private static void popup4() {
-        pp4f = new JFrame();
-        JPanel pp4p = new JPanel();
-        pp4p.setLayout(null);
-        pp4f.add(pp4p);
-        pp4f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp4f.setVisible(true);
-    }
-    private static  void popup5() {
-        pp5f = new JFrame();
-        JPanel pp5p = new JPanel();
-        pp5p.setLayout(null);
-        pp5f.add(pp5p);
-        pp5f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp5f.setVisible(true);
-    }
-    private static void popup6() {
-        pp6f = new JFrame();
-        JPanel pp6p = new JPanel();
-        pp6p.setLayout(null);
-        pp6f.add(pp6p);
-        pp6f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp6f.setVisible(true);
-    }
-    private static void popup7() {
-        pp7f = new JFrame();
-        JPanel pp7p = new JPanel();
-        pp7p.setLayout(null);
-        pp7f.add(pp7p);
-        pp7f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp7f.setVisible(true);
-    }
-    private static void popup8() {
-        pp8f = new JFrame();
-        JPanel pp8p = new JPanel();
-        pp8p.setLayout(null);
-        pp8f.add(pp8p);
-        pp8f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp8f.setVisible(true);
-    }
-    private static void popup9() {
-        pp9f = new JFrame();
-        JPanel pp9p = new JPanel();
-        pp9p.setLayout(null);
-        pp9f.add(pp9p);
-        pp9f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                closed+=1;
-            }
-        });
-        pp9f.setVisible(true);
-    }
-
-
 
     private static int loopCalc(int lcDiff, int lcTime) {
         int l = 0;
