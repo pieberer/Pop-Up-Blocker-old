@@ -2,15 +2,14 @@ import javax.swing.*;
 
 import QoLTools.AudioPlayer;
 import QoLTools.ExceptionHandler;
-import QoLTools.Randomizer;
 import QoLTools.SwingExtras;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.net.*;
+
 // haha pp
 public class Gameplay {
     public static void main(String[] args) {
@@ -20,121 +19,87 @@ public class Gameplay {
     public static int closed = 0;
     private static int loops;
     private static int delay;
-    private static Random random = new Random();
 
     public Gameplay() {
-        Menu objMenu = new Menu();
-        loops = loopCalc(objMenu.diff, objMenu.time);
-        delay = delayCalc(objMenu.diff);
-        try{
-            countdown();
-            Thread.sleep(4000);
-            { // the actual game
-                popupc();
-                for(int a = 1; a <= loops; a++) {
-                    int bruh = random.nextInt(10 - 1 + 1) + 1;
-                    popupRun(bruh);
-                    switch(objMenu.diff) {
-                        case(1):
-                            if(objMenu.time == 5 && a == 2) {
-                                Thread.sleep(1000);
-                            } else if(objMenu.time == 15 && a == 7) {
-                                Thread.sleep(1000);
-                            } else if(objMenu.time == 45 && a == 22) {
-                                Thread.sleep(1000);
-                            } else {
-                                Thread.sleep(delay);
-                            }
-                            break;
-                        default:
-                            Thread.sleep(delay);
-                    }
-                }
-                winningScreen();
-            }
-        } catch(Exception e) {
-            ExceptionHandler.handleException(e);
-        }
+        winningScreen();
+        popupRun(delay);
+        loopCalc(delay, loops);
+        delayCalc(loops);
+        countdown();
     }
 
     private static Timer timer;
     private static void countdown() {
-    try {
-        JFrame cdf = new JFrame("Countdown");
-        cdf.setSize(250, 250);
-        cdf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        JPanel cdp = new JPanel();
-        cdp.setLayout(new BorderLayout());
-        cdp.setBackground(Color.DARK_GRAY);
-        JLabel label = new JLabel("3");
-        label.setForeground(Color.RED);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setVerticalAlignment(SwingConstants.CENTER);
-        Font labelFont = label.getFont();
-        Font newFont = labelFont.deriveFont(48f);
-        label.setFont(newFont);
+        try {
+            JFrame cdf = new JFrame("Countdown");
+            cdf.setSize(250, 250);
+            cdf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            JPanel cdp = new JPanel();
+            cdp.setLayout(new BorderLayout());
+            cdp.setBackground(Color.DARK_GRAY);
+            JLabel label = new JLabel("3");
+            label.setForeground(Color.RED);
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            label.setVerticalAlignment(SwingConstants.CENTER);
+            Font labelFont = label.getFont();
+            Font newFont = labelFont.deriveFont(48f);
+            label.setFont(newFont);
 
-        AtomicInteger seconds = new AtomicInteger(3);
-        timer = new Timer(1000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int currentSeconds = seconds.getAndDecrement();
-                switch (currentSeconds) {
-                    case 3:
-                        label.setText("2");
-                        label.setForeground(Color.WHITE);
-                        break;
-                    case 2:
-                        label.setText("1");
-                        label.setForeground(Color.RED);
-                        break;
-                    case 1:
-                        timer.stop();
-                        label.setText("GO!");
-                        label.setForeground(Color.WHITE);
-                        break;
+            AtomicInteger seconds = new AtomicInteger(3);
+            timer = new Timer(1000, new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    int currentSeconds = seconds.getAndDecrement();
+                    switch (currentSeconds) {
+                        case 3:
+                            label.setText("2");
+                            label.setForeground(Color.WHITE);
+                            break;
+                        case 2:
+                            label.setText("1");
+                            label.setForeground(Color.RED);
+                            break;
+                        case 1:
+                            timer.stop();
+                            label.setText("GO!");
+                            label.setForeground(Color.WHITE);
+                            break;
+                    }
                 }
-            }
-        });
-        cdp.add(label);
-        cdf.add(cdp);
-        cdf.setVisible(true);
-        timer.start();
-        Thread.sleep(4000);
-        cdf.dispose();
-    } catch (Exception e) {
-        ExceptionHandler.handleException(e);
+            });
+            cdp.add(label);
+            cdf.add(cdp);
+            cdf.setVisible(true);
+            timer.start();
+            Thread.sleep(4000);
+            cdf.dispose();
+        } catch (Exception e) {
+            ExceptionHandler.handleException(e);
+        }
     }
-}
     private static void winningScreen() {
         SwingExtras.frameDisposeAll(pp9f, pp8f, pp7f, pp6f, pp5f, pp4f, pp3f, pp2f, pp1f, pp0f);
 
     }
+
+
+
+
+
     private static Timer timerc;
     private static double timerDisplay;
     private static int thetime = 1;
-    private static void popupc() { // this is the window that shows timer and counts windows closed
-        File file = new File("assets/sounds/vslancer.wav");
-        AudioPlayer.setAudio(file);
-        AudioPlayer.playAudio(true);
 
-        JFrame ppcf = new JFrame("Counter");
-        ppcf.setSize(425, 400);
-        ppcf.setLocation(Randomizer.JFrameRandomX(425), Randomizer.JFrameRandomY(400));
-        JPanel ppcp = new JPanel(new BorderLayout());
-        ppcp.setBackground(Color.DARK_GRAY);
-        
-        JLabel label = new JLabel("<html>Come on! I know you can do this!<html>");
-        label.setForeground(Color.RED);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        Font fonta = label.getFont();
-        Font fontb = fonta.deriveFont(24f);
-        Font fontc = fonta.deriveFont(12f);
-        label.setFont(fontb);
+    private static JLabel motivationalLabel;
+    private static JLabel timeLabel;
+    private static JLabel counter;
 
+    private static JFrame ppcf;
+    private static JFrame theuhhhframeyeah;
+    private static void popupcTimer() {
         // temporary (later change this in the switch() with objMenu.time)
-        int gwagwa = 60;
+        int gwagwa = 15;
 
-        Menu objMenu = new Menu();
+        //Menu objMenu = new Menu();
         switch(gwagwa) {
             case 5:
                 timerDisplay = 5.0;
@@ -159,11 +124,6 @@ public class Gameplay {
 
         }
 
-        JLabel timeLabel = new JLabel("" + timerDisplay);
-        timeLabel.setForeground(Color.WHITE);
-        timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        timeLabel.setFont(fontc);
-
         timerc = new Timer(100, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 thetime--;
@@ -171,33 +131,87 @@ public class Gameplay {
                     timerDisplay-=0.1;
                     timeLabel.setText(String.format("%.1f", timerDisplay));
                 } else {
+                    theuhhhframeyeah.dispose();
                     ppcf.dispose();
+                    AudioPlayer.stopAudio();
                     timerc.stop();
                 }
             }
         });
+    }
+    private static void popupc() { // this is the window that shows timer and counts windows closed
+        File file = new File("assets/sounds/vslancer.wav");
+        AudioPlayer.setAudio(file);
+        AudioPlayer.playAudio(true);
 
-        JLabel counter = new JLabel("Pop-ups closed: " + closed);
+        ppcf = new JFrame("Counter");
+        ppcf.setSize(425, 400);
+        ppcf.setLocation(SwingExtras.JFrameRandomX(425), SwingExtras.JFrameRandomY(400));
+        JPanel ppcp = new JPanel(new BorderLayout());
+        ppcp.setBackground(Color.DARK_GRAY);
+        
+        motivationalLabel = new JLabel("<html>Come on! I know you can do this!<html>");
+        motivationalLabel.setForeground(Color.RED);
+        motivationalLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        Font fonta = motivationalLabel.getFont();
+        Font fontb = fonta.deriveFont(24f);
+        Font fontc = fonta.deriveFont(12f);
+        motivationalLabel.setFont(fontb);
+
+        counter = new JLabel("Pop-ups closed: " + closed);
         counter.setForeground(Color.WHITE);
         counter.setHorizontalAlignment(SwingConstants.CENTER);
         counter.setFont(fontc);
 
-        
+        timeLabel = new JLabel("" + timerDisplay);
+        timeLabel.setForeground(Color.WHITE);
+        timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        timeLabel.setFont(fontc);
 
         ppcp.add(timeLabel , BorderLayout.NORTH);
-        ppcp.add(label, BorderLayout.CENTER);
+        ppcp.add(motivationalLabel, BorderLayout.CENTER);
         ppcp.add(counter, BorderLayout.SOUTH);
         ppcf.add(ppcp, BorderLayout.CENTER);
         ppcf.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                closed+=1;
-                popupc();
+                closed++;
+                popupcReinitialize();
             }
         });
         ppcf.setVisible(true);
+        popupcTimer();
         timerc.start();
     }
+    public static void popupcReinitialize() {
+        popupcNew();
+    }
+    public static void popupcNew() {
+        theuhhhframeyeah = new JFrame("Counter");
+        ImageIcon THISFUCKINGIMAGEICON = new ImageIcon("assets/icon.png");
+        theuhhhframeyeah.setIconImage(THISFUCKINGIMAGEICON.getImage());
+        theuhhhframeyeah.setSize(425, 400);
+        theuhhhframeyeah.setLocation(SwingExtras.JFrameRandomX(425), SwingExtras.JFrameRandomY(400));
+        JPanel goddamnasspanel = new JPanel(new BorderLayout());
+        goddamnasspanel.setBackground(Color.DARK_GRAY);
+
+        goddamnasspanel.add(timeLabel , BorderLayout.NORTH);
+        goddamnasspanel.add(motivationalLabel, BorderLayout.CENTER);
+        goddamnasspanel.add(counter, BorderLayout.SOUTH);
+        theuhhhframeyeah.add(goddamnasspanel, BorderLayout.CENTER);
+        theuhhhframeyeah.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                closed++;
+                popupcReinitialize();
+            }
+        });
+        theuhhhframeyeah.setVisible(true);
+    }
+
+
+
+
 
     private static JFrame pp0f;
     private static JFrame pp1f;
@@ -281,7 +295,7 @@ public class Gameplay {
     private static void popup0() {
         pp0f = new JFrame("HOT CHICKS");
         pp0f.setSize(348, 275);
-        pp0f.setLocation(Randomizer.JFrameRandomX(348), Randomizer.JFrameRandomY(275));
+        pp0f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp0p = new JPanel();
         ImageIcon img = new ImageIcon("assets/textures/popups/hot chicks.png");
         JLabel imageLabel = new JLabel(img);

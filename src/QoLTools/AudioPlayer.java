@@ -26,6 +26,6 @@ public class AudioPlayer {
         if (clip != null && clip.isRunning()) {
             clip.stop();
             clip.close();
-        }
+        } else {}
     }
 }

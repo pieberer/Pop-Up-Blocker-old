@@ -1,5 +1,7 @@
 package QoLTools;
 
+import java.util.Random;
+
 import javax.swing.JFrame;
 
 public class SwingExtras {
@@ -16,6 +18,17 @@ public class SwingExtras {
             if(f8 == null) {} else {f8.dispose();}
             if(f9 == null) {} else {f9.dispose();}
         }
+    }
+    private static Random random = new Random();
+    public static int JFrameRandomX(int length) {
+        int swidth = ScreenDimensions.getWidth();
+        int x = random.nextInt(swidth - length);
+        return x;
+    }
+    public static int JFrameRandomY(int height) {
+        int sheight = ScreenDimensions.getHeight();
+        int y = random.nextInt(sheight - height);
+        return y;
     }
 }
 
