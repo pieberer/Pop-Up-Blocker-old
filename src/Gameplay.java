@@ -2,6 +2,7 @@ import javax.swing.*;
 
 import QoLTools.AudioPlayer;
 import QoLTools.ExceptionHandler;
+import QoLTools.Randomizer;
 import QoLTools.ScreenDimensions;
 import QoLTools.SwingExtras;
 
@@ -14,20 +15,57 @@ import java.net.*;
 // haha pp
 public class Gameplay {
     public static void main(String[] args) {
-        countdown();
+        new Gameplay();
     }
 
     public static int closed = 0;
     private static int loops;
     private static int delay;
 
-    public Gameplay() {
-        loopCalc(delay, loops);
-        delayCalc(loops);
+    public Gameplay() { // the actual gameplay
+        Menu objMenu = new Menu();
+        loopCalc(objMenu.diff, objMenu.time);
+        delayCalc(objMenu.diff);
         countdown();
     }
 
-    private static Timer timer;
+    private static void actualGameplay() { // JUST KIDDING, THIS IS THE REAL ACTUAL GAMEPLAY!
+        popupc();
+        realActualGameplay();
+    }
+
+    private static int thisisacertifiedbruhmoment;
+    private static Timer gameplayTimer;
+    private static void realActualGameplay() { // J U S T   K I -
+        gameplayTimer = new Timer(delay, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                thisisacertifiedbruhmoment = Randomizer.Randomize(9, 0);
+                loops--;
+
+                switch(thisisacertifiedbruhmoment) {
+                    case 0 : popups.popup0(); break;
+                    case 1 : popups.popup1(); break;
+                    case 2 : popups.popup2(); break;
+                    case 3 : popups.popup3(); break;
+                    case 4 : popups.popup4(); break;
+                    case 5 : popups.popup5(); break;
+                    case 6 : popups.popup6(); break;
+                    case 7 : popups.popup8(); break;
+                    case 9 : popups.popup9(); break;
+                }
+
+                Menu objMenu = new Menu();
+                switch(objMenu.diff) {
+                    case 1:
+                        if(loops==2&&objMenu.time==5){}else if(objMenu.time==15&&loops==15){}else if(objMenu.time==45&&loops==45){}
+                        else{try{Thread.sleep(1000);}catch(Exception ex){ExceptionHandler.handleException(ex);}}break; // FUCK CODE ORGANIZEMENT
+                    default:break;}
+                if(loops>0){}else{win();}}
+        });
+        gameplayTimer.start();
+    }
+
+    private static Timer countdownTimer;
     private static void countdown() {
         try {
             JFrame cdf = new JFrame("Countdown");
@@ -53,7 +91,7 @@ public class Gameplay {
             label.setFont(newFont);
 
             AtomicInteger seconds = new AtomicInteger(3);
-            timer = new Timer(1000, new ActionListener() {
+            countdownTimer = new Timer(1000, new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     int currentSeconds = seconds.getAndDecrement();
                     switch (currentSeconds) {
@@ -66,19 +104,19 @@ public class Gameplay {
                             label.setForeground(Color.RED);
                             break;
                         case 1:
-                            timer.stop();
                             label.setText("GO!");
                             label.setForeground(Color.WHITE);
                             break;
+                        case 0 :
+                            countdownTimer.stop();
+                            actualGameplay();
                     }
                 }
             });
             cdp.add(label);
             cdf.add(cdp);
             cdf.setVisible(true);
-            timer.start();
-            Thread.sleep(4000);
-            cdf.dispose();
+            countdownTimer.start();
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
@@ -90,7 +128,6 @@ public class Gameplay {
 
     private static Timer timerc;
     private static double timerDisplay;
-    private static int thetime = 1;
 
     private static JLabel motivationalLabel;
     private static JLabel timeLabel;
@@ -99,43 +136,29 @@ public class Gameplay {
     private static JFrame ppcf;
     private static JFrame theuhhhframeyeah;
     private static void popupcTimer() {
-        // temporary (later change this in the switch() with objMenu.time)
-        int gwagwa = 15;
-
-        //Menu objMenu = new Menu();
-        switch(gwagwa) {
+        Menu objMenu = new Menu();
+        switch(objMenu.time) {
             case 5:
                 timerDisplay = 5.0;
-                thetime = 49;
                 break;
             case 15:
                 timerDisplay = 15.0;
-                thetime = 149;
                 break;
             case 30:
                 timerDisplay = 30.0;
-                thetime = 299;
                 break;
             case 45:
                 timerDisplay = 45.0;
-                thetime = 449;
                 break;
             case 60:
                 timerDisplay = 60.0;
-                thetime = 599;
                 break;
-
         }
 
         timerc = new Timer(100, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                thetime--;
-                if(thetime > 0) {
-                    timerDisplay-=0.1;
-                    timeLabel.setText(String.format("%.1f", timerDisplay));
-                } else {
-                    win();
-                }
+                timerDisplay-=0.1;
+                timeLabel.setText(String.format("%.1f", timerDisplay));
             }
         });
     }
@@ -212,6 +235,7 @@ public class Gameplay {
     }
 
 
+
     private static void win() {
         SwingExtras.frameDisposeAll(popups.pp9f, popups.pp8f, popups.pp7f, popups.pp6f, popups.pp5f, popups.pp4f, popups.pp3f, popups.pp2f, popups.pp1f, popups.pp0f);
         theuhhhframeyeah.dispose();
@@ -219,7 +243,6 @@ public class Gameplay {
         AudioPlayer.stopAudio();
         timerc.stop();
     }
-
 
     
 
@@ -311,18 +334,10 @@ public class Gameplay {
     private static int delayCalc(int dcDiff) {
         int d = 0;
         switch(dcDiff) {
-            case(1):
-                d = 2000;
-                break;
-            case(2):
-                d = 1000;
-                break;
-            case(3):
-                d = 500;
-                break;
-            case(4):
-                d = 100;
-                break;
+            case(1): d = 1000; break;
+            case(2): d = 1000; break;
+            case(3): d = 500; break;
+            case(4): d = 100; break;
         }
         return d;
     }
