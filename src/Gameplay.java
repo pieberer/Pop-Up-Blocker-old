@@ -14,8 +14,8 @@ import java.net.*;
 
 // haha pp
 public class Gameplay {
-    public static void main(String[] args) {
-        new Gameplay();
+    public static void main(String[] args) { // god damnit delete this later
+        new Gameplay(); 
     }
 
     public static int closed = 0;
@@ -23,15 +23,19 @@ public class Gameplay {
     private static int delay;
 
     public Gameplay() { // the actual gameplay
-        Menu objMenu = new Menu();
-        loopCalc(objMenu.diff, objMenu.time);
-        delayCalc(objMenu.diff);
-        countdown();
+        try{
+            Menu objMenu = new Menu();
+            loops = loopCalc(2, 5); // set to (objMenu.diff, objMenu.time)
+            delay = delayCalc(2); // set to (objMenu.diff)
+            countdown();
+        }catch(Exception e){ExceptionHandler.handleException(e);}
     }
 
     private static void actualGameplay() { // JUST KIDDING, THIS IS THE REAL ACTUAL GAMEPLAY!
-        popupc();
-        realActualGameplay();
+        try{
+            popupc();
+            realActualGameplay();
+        }catch(Exception e){ExceptionHandler.handleException(e);}
     }
 
     private static int thisisacertifiedbruhmoment;
@@ -54,13 +58,17 @@ public class Gameplay {
                     case 9 : popups.popup9(); break;
                 }
 
+                System.out.println(loops);
+
                 Menu objMenu = new Menu();
                 switch(objMenu.diff) {
                     case 1:
                         if(loops==2&&objMenu.time==5){}else if(objMenu.time==15&&loops==15){}else if(objMenu.time==45&&loops==45){}
                         else{try{Thread.sleep(1000);}catch(Exception ex){ExceptionHandler.handleException(ex);}}break; // FUCK CODE ORGANIZEMENT
                     default:break;}
-                if(loops>0){}else{win();}}
+                counter.setText("Pop-ups closed: " + closed);
+                if(loops==0){win();}else{}
+            }
         });
         gameplayTimer.start();
     }
@@ -68,6 +76,8 @@ public class Gameplay {
     private static Timer countdownTimer;
     private static void countdown() {
         try {
+            Menu objMenu = new Menu();
+
             JFrame cdf = new JFrame("Countdown");
             ImageIcon wtfbruh = new ImageIcon("assets/icon.png");
             cdf.setIconImage(wtfbruh.getImage());
@@ -78,6 +88,12 @@ public class Gameplay {
             int swcenter = swidth / 2;
             int shcenter = sheight / 2;
             cdf.setLocation(swcenter - 250 / 2, shcenter - 250 / 2);
+            cdf.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    objMenu.GUI();
+                }
+            });
 
             JPanel cdp = new JPanel();
             cdp.setLayout(new BorderLayout());
@@ -109,6 +125,7 @@ public class Gameplay {
                             break;
                         case 0 :
                             countdownTimer.stop();
+                            cdf.dispose();
                             actualGameplay();
                     }
                 }
@@ -137,7 +154,7 @@ public class Gameplay {
     private static JFrame theuhhhframeyeah;
     private static void popupcTimer() {
         Menu objMenu = new Menu();
-        switch(objMenu.time) {
+        switch(30) { // set this to (objMenu.time)
             case 5:
                 timerDisplay = 5.0;
                 break;
@@ -163,8 +180,8 @@ public class Gameplay {
         });
     }
     private static void popupc() { // this is the window that shows timer and counts windows closed
-        //File file = new File("assets/sounds/vslancer.wav");
-        //AudioPlayer.setAudio(file);
+        File file = new File("assets/sounds/vslancer.wav");
+        AudioPlayer.setAudio(file);
         AudioPlayer.playAudio(true);
 
         ppcf = new JFrame("Counter");
@@ -237,9 +254,10 @@ public class Gameplay {
 
 
     private static void win() {
+        gameplayTimer.stop();
         SwingExtras.frameDisposeAll(popups.pp9f, popups.pp8f, popups.pp7f, popups.pp6f, popups.pp5f, popups.pp4f, popups.pp3f, popups.pp2f, popups.pp1f, popups.pp0f);
-        theuhhhframeyeah.dispose();
-        ppcf.dispose();
+        if(theuhhhframeyeah==null){}else{theuhhhframeyeah.dispose();}
+        if(ppcf==null){}else{ppcf.dispose();}
         AudioPlayer.stopAudio();
         timerc.stop();
     }
@@ -248,6 +266,7 @@ public class Gameplay {
 
     public static void retard() {
         try{
+            gameplayTimer.stop();
             SwingExtras.frameDisposeAll(popups.pp9f, popups.pp8f, popups.pp7f, popups.pp6f, popups.pp5f, popups.pp4f, popups.pp3f, popups.pp2f, popups.pp1f, popups.pp0f);
             AudioPlayer.stopAudio();
             File thefile = new File("assets/sounds/fail.wav");

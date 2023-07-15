@@ -49,6 +49,7 @@ public class popups {
     protected static void popup1() {
         pp1f = new JFrame("DOWNLOAD NOW");
         pp1f.setSize(300, 200);
+        pp1f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp1p = new JPanel();
         pp1p.setLayout(null);
         ImageIcon gif = new ImageIcon("assets/textures/popups/sketchy ass button.gif");
