@@ -14,10 +14,6 @@ import java.net.*;
 
 // haha pp
 public class Gameplay {
-    public static void main(String[] args) { // god damnit delete this later
-        new Gameplay(); 
-    }
-
     public static int closed = 0;
     private static int loops;
     private static int delay;
@@ -25,8 +21,8 @@ public class Gameplay {
     public Gameplay() { // the actual gameplay
         try{
             Menu objMenu = new Menu();
-            loops = loopCalc(2, 15); // set to (objMenu.diff, objMenu.time)
-            delay = delayCalc(2); // set to (objMenu.diff)
+            loops = loopCalc(objMenu.diff, objMenu.time);
+            delay = delayCalc(objMenu.diff);
             countdown();
         }catch(Exception e){ExceptionHandler.handleException(e);}
     }
@@ -81,7 +77,6 @@ public class Gameplay {
             ImageIcon wtfbruh = new ImageIcon("assets/icon.png");
             cdf.setIconImage(wtfbruh.getImage());
             cdf.setSize(250, 250);
-            cdf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             int swidth = ScreenDimensions.getWidth();
             int sheight = ScreenDimensions.getHeight();
             int swcenter = swidth / 2;
@@ -153,7 +148,7 @@ public class Gameplay {
     private static JFrame theuhhhframeyeah;
     private static void popupcTimer() {
         Menu objMenu = new Menu();
-        switch(5) { // set this to (objMenu.time)
+        switch(objMenu.time) {
             case 5:
                 timerDisplay = 5.0;
                 break;
@@ -181,7 +176,7 @@ public class Gameplay {
     private static void popupc() { // this is the window that shows timer and counts windows closed
         File file = new File("assets/sounds/vslancer.wav");
         AudioPlayer.setAudio(file);
-        //AudioPlayer.playAudio(true);
+        AudioPlayer.playAudio(true);
 
         ppcf = new JFrame("Counter");
         ppcf.setSize(425, 400);
@@ -265,7 +260,7 @@ public class Gameplay {
 
     public static void retard() {
         try{
-            gameplayTimer.stop();
+            if(gameplayTimer==null){}else{gameplayTimer.stop();}
             SwingExtras.frameDisposeAll(popups.pp9f, popups.pp8f, popups.pp7f, popups.pp6f, popups.pp5f, popups.pp4f, popups.pp3f, popups.pp2f, popups.pp1f, popups.pp0f);
             AudioPlayer.stopAudio();
             File thefile = new File("assets/sounds/fail.wav");
@@ -345,7 +340,7 @@ public class Gameplay {
         } else if(lcTime == 60 && lcDiff == 4) {
             l = 600;
         } else {
-            System.out.println("Something's wrong i can feel it.");
+            System.out.println("Something's wrong in the loops calculator.");
         }
         return l;
     }
@@ -356,6 +351,7 @@ public class Gameplay {
             case(2): d = 1000; break;
             case(3): d = 500; break;
             case(4): d = 100; break;
+            default: System.out.println("Something's wrong in the difficulty calculator.");
         }
         return d;
     }

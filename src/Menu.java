@@ -46,8 +46,8 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     
     private int highs = 0;
 
-    public int swidth;
-    public int sheight;
+    private int swidth;
+    private  int sheight;
     private int swcenter;
     private int shcenter;
     private int mainfsx = 616; // dont mind this very specific size
