@@ -25,7 +25,7 @@ public class Gameplay {
     public Gameplay() { // the actual gameplay
         try{
             Menu objMenu = new Menu();
-            loops = loopCalc(2, 5); // set to (objMenu.diff, objMenu.time)
+            loops = loopCalc(2, 15); // set to (objMenu.diff, objMenu.time)
             delay = delayCalc(2); // set to (objMenu.diff)
             countdown();
         }catch(Exception e){ExceptionHandler.handleException(e);}
@@ -44,7 +44,6 @@ public class Gameplay {
         gameplayTimer = new Timer(delay, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 thisisacertifiedbruhmoment = Randomizer.Randomize(9, 0);
-                loops--;
 
                 switch(thisisacertifiedbruhmoment) {
                     case 0 : popups.popup0(); break;
@@ -58,16 +57,16 @@ public class Gameplay {
                     case 9 : popups.popup9(); break;
                 }
 
-                System.out.println(loops);
-
                 Menu objMenu = new Menu();
                 switch(objMenu.diff) {
                     case 1:
                         if(loops==2&&objMenu.time==5){}else if(objMenu.time==15&&loops==15){}else if(objMenu.time==45&&loops==45){}
-                        else{try{Thread.sleep(1000);}catch(Exception ex){ExceptionHandler.handleException(ex);}}break; // FUCK CODE ORGANIZEMENT
+                        else{try{Thread.sleep(1000);}catch(Exception ex){ExceptionHandler.handleException(ex);}}
+                        break; // FUCK CODE ORGANIZEMENT
                     default:break;}
                 counter.setText("Pop-ups closed: " + closed);
                 if(loops==0){win();}else{}
+                loops--;
             }
         });
         gameplayTimer.start();
@@ -154,7 +153,7 @@ public class Gameplay {
     private static JFrame theuhhhframeyeah;
     private static void popupcTimer() {
         Menu objMenu = new Menu();
-        switch(30) { // set this to (objMenu.time)
+        switch(5) { // set this to (objMenu.time)
             case 5:
                 timerDisplay = 5.0;
                 break;
@@ -182,7 +181,7 @@ public class Gameplay {
     private static void popupc() { // this is the window that shows timer and counts windows closed
         File file = new File("assets/sounds/vslancer.wav");
         AudioPlayer.setAudio(file);
-        AudioPlayer.playAudio(true);
+        //AudioPlayer.playAudio(true);
 
         ppcf = new JFrame("Counter");
         ppcf.setSize(425, 400);

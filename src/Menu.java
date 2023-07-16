@@ -53,6 +53,8 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     private int mainfsx = 616; // dont mind this very specific size
     private int mainfsy = 750;
     public void GUI(){
+        // most important
+        DataStuff.dataLoad();
         try{
             // frame
             mainf = new JFrame("Pop Up Blocker");
