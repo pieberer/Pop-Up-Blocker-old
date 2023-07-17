@@ -37,6 +37,7 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     private JButton p2Back;
     private JLabel version;
     private JLabel credits;
+    private JLabel changelog;
     private JLabel pieb;
     private JLabel toby;
     private JLabel chatgpt;
@@ -391,6 +392,11 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                 credits.setBounds(50, 0, 350, 250);
                 credits.setFont(creditsFont);
                 credits.setForeground(Color.WHITE);
+
+                changelog = new JLabel("<html>Changelog 1.0: <br>- the game was just made lmfao<html>");
+                changelog.setBounds(275, 475, 250, 250);
+                changelog.setForeground(Color.WHITE);
+
                 // TODO: these gifs
                 pieb = new JLabel("pieb gif goes here");
                 pieb.setBounds(385, 50, 200, 15);
@@ -408,6 +414,7 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                     mainp2.add(p2Back);
                     mainp2.add(version);
                     mainp2.add(credits);
+                    mainp2.add(changelog);
                     mainp2.add(toby);
                     mainp2.add(pieb);
                     mainp2.add(chatgpt);

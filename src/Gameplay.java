@@ -39,7 +39,7 @@ public class Gameplay {
     private static void realActualGameplay() { // J U S T   K I -
         gameplayTimer = new Timer(delay, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                thisisacertifiedbruhmoment = Randomizer.Randomize(9, 0);
+                thisisacertifiedbruhmoment = Randomizer.randomizeInt(9, 0);
 
                 switch(thisisacertifiedbruhmoment) {
                     case 0 : popups.popup0(); break;

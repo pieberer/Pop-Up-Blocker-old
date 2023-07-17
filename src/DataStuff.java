@@ -89,10 +89,21 @@ public class DataStuff {
     }    
 
     private static void dataSave() {
-        // TODO: yeah...
+        try{
+            Menu menuobj = new Menu();
+            int diff = menuobj.diff;
+            int time = menuobj.time;
+            int[] highSData = new int[20];
+            
+            for(;;){
+
+            }
+
+            // im a GENIUS
+        }catch(Exception e){ExceptionHandler.handleException(e);}
     }
 
     public static void dataLoad() {
-        // TODO: this too
+        // TODO: data loading
     }
 }
