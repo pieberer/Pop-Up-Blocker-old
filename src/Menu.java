@@ -55,9 +55,7 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     private int mainfsy = 750;
     public void GUI(){
         // most important
-        try {
-            DataStuff.dataLoad();
-        }catch(Exception IWOKEUPINANEWBUGATTI){}
+        DataStuff.dataLoad();
         try{
             // frame
             mainf = new JFrame("Pop Up Blocker");

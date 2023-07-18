@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "FileTypeDetector",
-            "request": "launch",
-            "mainClass": "FileTypeDetector",
-            "projectName": "Pop Up Blocker_80fd4660"
-        },
-        {
-            "type": "java",
             "name": "DataStuff",
             "request": "launch",
             "mainClass": "DataStuff",

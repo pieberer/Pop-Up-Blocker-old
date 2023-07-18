@@ -6,11 +6,11 @@ import QoLTools.ScreenDimensions;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
+import java.io.File;
 
 public class DataStuff {
     public static void main(String[] args) {
-        dataSave();
+        new DataStuff();
     }
 
     public DataStuff() {
@@ -93,34 +93,12 @@ public class DataStuff {
             Menu menuobj = new Menu();
             int diff = menuobj.diff;
             int time = menuobj.time;
-            int diffidk = 1;
-            int timeidk = 0;
             int[] highSData = new int[20];
-            for(int e=0;e<20;e++){highSData[e]=0;}
-            /* making sure nothing goes wrong
-             * HEY NO CHEATING
-            */
-
-            for(int l=1;l<21;l++){
-                timeidk++;
-                // I HAVE NO IDEA WHAT IM DOING
-
-                if(timeidk==time) {
-                    highSData[l] = Gameplay.closed;
-                    diffidk++;
-                } else if(diffidk==diff) {
-                    highSData[1] = Gameplay.closed;
-                }
-                System.out.println(l);
-            }
             
-            FileOutputStream fileOut = new FileOutputStream("highscores.ser");
-            ObjectOutputStream obejctOut = new ObjectOutputStream(fileOut);
+            for(;;){
 
-            obejctOut.writeObject(highSData);
+            }
 
-            obejctOut.close();
-            fileOut.close();
             // im a GENIUS
         }catch(Exception e){ExceptionHandler.handleException(e);}
     }
@@ -129,4 +107,3 @@ public class DataStuff {
         // TODO: data loading
     }
 }
-;;;;
