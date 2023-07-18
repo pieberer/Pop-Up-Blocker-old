@@ -245,11 +245,12 @@ public class Gameplay {
         theuhhhframeyeah.setVisible(true);
     }
 
-
+    private static JFrame[] popupFrames;
 
     private static void win() {
+        totalFrame();
         gameplayTimer.stop();
-        SwingExtras.frameDisposeAll(popups.pp9f, popups.pp8f, popups.pp7f, popups.pp6f, popups.pp5f, popups.pp4f, popups.pp3f, popups.pp2f, popups.pp1f, popups.pp0f);
+        SwingExtras.frameDisposeAll(popupFrames);
         if(theuhhhframeyeah==null){}else{theuhhhframeyeah.dispose();}
         if(ppcf==null){}else{ppcf.dispose();}
         AudioPlayer.stopAudio();
@@ -257,11 +258,28 @@ public class Gameplay {
     }
 
     
+    private static void totalFrame() {
+        popupFrames = new JFrame[10];
+        {
+            popupFrames[0] = popups.pp0f;
+            popupFrames[1] = popups.pp1f;
+            popupFrames[2] = popups.pp2f;
+            popupFrames[3] = popups.pp3f;
+            popupFrames[4] = popups.pp4f;
+            popupFrames[5] = popups.pp5f;
+            popupFrames[6] = popups.pp6f;
+            popupFrames[7] = popups.pp7f;
+            popupFrames[8] = popups.pp8f;
+            popupFrames[9] = popups.pp9f;
+        }
+    }
+
 
     public static void retard() {
         try{
             if(gameplayTimer==null){}else{gameplayTimer.stop();}
-            SwingExtras.frameDisposeAll(popups.pp9f, popups.pp8f, popups.pp7f, popups.pp6f, popups.pp5f, popups.pp4f, popups.pp3f, popups.pp2f, popups.pp1f, popups.pp0f);
+            totalFrame();
+            SwingExtras.frameDisposeAll(popupFrames);
             AudioPlayer.stopAudio();
             File thefile = new File("assets/sounds/fail.wav");
             AudioPlayer.setAudio(thefile);

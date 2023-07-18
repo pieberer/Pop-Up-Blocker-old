@@ -89,44 +89,61 @@ public class DataStuff {
     }    
 
     private static void dataSave() {
-        try{
-            Menu menuobj = new Menu();
-            int diff = menuobj.diff;
-            int time = menuobj.time;
-            int diffidk = 1;
-            int timeidk = 0;
-            int[] highSData = new int[20];
-            for(int e=0;e<20;e++){highSData[e]=0;}
-            /* making sure nothing goes wrong
-             * HEY NO CHEATING
-            */
-
-            for(int l=1;l<21;l++){
-                timeidk++;
-                // I HAVE NO IDEA WHAT IM DOING
-
-                if(timeidk==time) {
-                    highSData[l] = Gameplay.closed;
-                    diffidk++;
-                } else if(diffidk==diff) {
-                    highSData[1] = Gameplay.closed;
+        try (FileOutputStream fileOut = new FileOutputStream("highscores.ser");
+            ObjectOutputStream obejctOut = new ObjectOutputStream(fileOut)) {
+                Menu menuobj = new Menu();
+                int diff = menuobj.diff;
+                int time = menuobj.time;
+                int diffidk = 0;
+                int timeidk = 0;
+                int[] highSData = new int[20];
+                if(loadedHighS == null) {
+                    for(int e=0;e<20;e++){highSData[e]=0;}
+                } else {
+                    highSData = loadedHighS;
                 }
-                System.out.println(l);
-            }
-            
-            FileOutputStream fileOut = new FileOutputStream("highscores.ser");
-            ObjectOutputStream obejctOut = new ObjectOutputStream(fileOut);
+                
+                /* making sure nothing goes wrong
+                * HEY NO CHEATING
+                */
 
-            obejctOut.writeObject(highSData);
+                for (int l = 0; l < 5; l++) {
+                    diffidk = 0;
+                    timeidk++;
+                
+                    if (timeidk == time) {
+                        for (int bruh = 0; bruh < 4; bruh++) {
+                            diffidk++;
+                
+                            if (diffidk == diff) {
+                                if (Gameplay.closed < highSData[bruh]) {
+                                    highSData[bruh] = Gameplay.closed;
+                                }
+                            }
+                        }
+                    }
+                }                
 
-            obejctOut.close();
-            fileOut.close();
-            // im a GENIUS
+                obejctOut.writeObject(highSData);
+                // im a GENIUS
         }catch(Exception e){ExceptionHandler.handleException(e);}
     }
-
+    public static int[] loadedHighS;
     public static void dataLoad() {
-        // TODO: data loading
+        try{try{try{
+                FileInputStream fileIn = new FileInputStream("highscores.ser");
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+
+                loadedHighS = (int[]) in.readObject();
+                
+                in.close();
+                fileIn.close();
+                }catch(Exception eee){} 
+            } catch (Exception e) {
+                ExceptionHandler.handleException(e);
+            }
+        }catch(Exception ee) {
+            ExceptionHandler.handleException(ee);
+        }
     }
 }
-;;;;
