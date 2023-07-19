@@ -104,7 +104,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                         if(diff != 0 && time != 0) {
                             mainf.dispose();
                             AudioPlayer.stopAudio();
-                            new Gameplay();
+                            Menu obj = new Menu();
+                            Gameplay a = new Gameplay();
+                            a.game(obj);
                         }
                     }
                 });
@@ -424,7 +426,7 @@ public class Menu { // dont you think its absolutely pointless to set all these 
             try{
                 File bgmusic = new File("assets/sounds/sans.wav");
                 AudioPlayer.setAudio(bgmusic);
-                AudioPlayer.playAudio(true);
+                //AudioPlayer.playAudio(true);
             } catch(Exception e) {
                 ExceptionHandler.handleException(e);
             }
@@ -458,49 +460,49 @@ public class Menu { // dont you think its absolutely pointless to set all these 
             } else if(diff==2) {
                 try{if(DataStuff.loadedHighS[1]!=null){highs = DataStuff.loadedHighS[1];}}catch(Exception a){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[2];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[2]!=null){highs = DataStuff.loadedHighS[2];}}catch(Exception a){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[3];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[3]!=null){highs = DataStuff.loadedHighS[3];}}catch(Exception a){}
             }
         } else if(time==2) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[4];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[4]!=null){highs = DataStuff.loadedHighS[4];}}catch(Exception a){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[5];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[5]!=null){highs = DataStuff.loadedHighS[5];}}catch(Exception a){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[6];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[6]!=null){highs = DataStuff.loadedHighS[6];}}catch(Exception a){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[7];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[7]!=null){highs = DataStuff.loadedHighS[7];}}catch(Exception a){}
             }
         } else if(time==3) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[8];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[8]!=null){highs = DataStuff.loadedHighS[8];}}catch(Exception a){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[9];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[9]!=null){highs = DataStuff.loadedHighS[9];}}catch(Exception a){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[10];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[10]!=null){highs = DataStuff.loadedHighS[10];}}catch(Exception a){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[11];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[11]!=null){highs = DataStuff.loadedHighS[11];}}catch(Exception a){}
             }
         } else if(time==4) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[12];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[12]!=null){highs = DataStuff.loadedHighS[12];}}catch(Exception a){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[13];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[13]!=null){highs = DataStuff.loadedHighS[13];}}catch(Exception a){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[14];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[14]!=null){highs = DataStuff.loadedHighS[14];}}catch(Exception a){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[15];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[15]!=null){highs = DataStuff.loadedHighS[15];}}catch(Exception a){}
             }
         } else if(time==5) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[16];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[16]!=null){highs = DataStuff.loadedHighS[16];}}catch(Exception a){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[17];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[17]!=null){highs = DataStuff.loadedHighS[17];}}catch(Exception a){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[18];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[18]!=null){highs = DataStuff.loadedHighS[18];}}catch(Exception a){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[19];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[19]!=null){highs = DataStuff.loadedHighS[19];}}catch(Exception a){}
             }
         }
         mainLHSb.setText("" + highs);

@@ -21,9 +21,8 @@ public class Gameplay {
     private static int diff;
     private static int time;
 
-    public Gameplay() { // the actual gameplay
-        try{
-            Menu objMenu = new Menu();
+    public void game(Menu objMenu) { // the actual gameplay
+        try{ // god help me
             diff = objMenu.diff;
             time = objMenu.time;
             loops = loopCalc(diff, time);
@@ -94,6 +93,7 @@ public class Gameplay {
             cdf.addWindowListener(new WindowAdapter(){
                 @Override
                 public void windowClosing(WindowEvent e) {
+                    countdownTimer.stop();
                     objMenu.GUI();
                 }
             });

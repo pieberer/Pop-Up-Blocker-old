@@ -13,7 +13,7 @@ public class DataStuff {
         dataSave();
     }
 
-    public DataStuff() {
+    public void dataingStuff() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try{
