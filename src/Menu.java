@@ -449,57 +449,58 @@ public class Menu { // dont you think its absolutely pointless to set all these 
          * idk im feeling lazy to add highSLabel() to every single
          * jbutton action listener
          */
+        System.out.println(time + " " + diff);
     }
     private void highSLabel() {
         if(time==1) {
             if(diff==1) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[0];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[0];}}catch(Exception a){}
             } else if(diff==2) {
-                if(DataStuff.loadedHighS[1]!=null){highs = DataStuff.loadedHighS[1];}
+                try{if(DataStuff.loadedHighS[1]!=null){highs = DataStuff.loadedHighS[1];}}catch(Exception a){}
             } else if(diff==3) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[2];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[2];}}catch(Exception a){}
             } else if(diff==4) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[3];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[3];}}catch(Exception a){}
             }
         } else if(time==2) {
             if(diff==1) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[4];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[4];}}catch(Exception a){}
             } else if(diff==2) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[5];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[5];}}catch(Exception a){}
             } else if(diff==3) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[6];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[6];}}catch(Exception a){}
             } else if(diff==4) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[7];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[7];}}catch(Exception a){}
             }
         } else if(time==3) {
             if(diff==1) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[8];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[8];}}catch(Exception a){}
             } else if(diff==2) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[9];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[9];}}catch(Exception a){}
             } else if(diff==3) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[10];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[10];}}catch(Exception a){}
             } else if(diff==4) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[11];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[11];}}catch(Exception a){}
             }
         } else if(time==4) {
             if(diff==1) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[12];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[12];}}catch(Exception a){}
             } else if(diff==2) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[13];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[13];}}catch(Exception a){}
             } else if(diff==3) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[14];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[14];}}catch(Exception a){}
             } else if(diff==4) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[15];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[15];}}catch(Exception a){}
             }
         } else if(time==5) {
             if(diff==1) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[16];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[16];}}catch(Exception a){}
             } else if(diff==2) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[17];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[17];}}catch(Exception a){}
             } else if(diff==3) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[18];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[18];}}catch(Exception a){}
             } else if(diff==4) {
-                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[19];}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[19];}}catch(Exception a){}
             }
         }
         mainLHSb.setText("" + highs);

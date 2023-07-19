@@ -28,6 +28,9 @@ public class Gameplay {
             time = objMenu.time;
             loops = loopCalc(diff, time);
             delay = delayCalc(diff);
+            System.out.println(diff + " " + objMenu.diff);
+            System.out.println(time + " " + objMenu.time);
+
             countdown();
         }catch(Exception e){ExceptionHandler.handleException(e);}
     }
@@ -365,6 +368,7 @@ public class Gameplay {
             l = 600;
         } else {
             System.out.println("Something's wrong in the loops calculator.");
+            System.out.println("The time: " + lcTime + " and the difficulty: " + lcDiff);
         }
         return l;
     }
