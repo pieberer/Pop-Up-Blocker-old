@@ -105,7 +105,7 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mainf.dispose();
                             AudioPlayer.stopAudio();
                             new Gameplay();
-                        } else {}
+                        }
                     }
                 });
                 extras = new JButton("Extras");
@@ -453,53 +453,53 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     private void highSLabel() {
         if(time==1) {
             if(diff==1) {
-                highs = DataStuff.loadedHighS[0];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[0];}
             } else if(diff==2) {
-                highs = DataStuff.loadedHighS[1];
+                if(DataStuff.loadedHighS[1]!=null){highs = DataStuff.loadedHighS[1];}
             } else if(diff==3) {
-                highs = DataStuff.loadedHighS[2];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[2];}
             } else if(diff==4) {
-                highs = DataStuff.loadedHighS[3];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[3];}
             }
         } else if(time==2) {
             if(diff==1) {
-                highs = DataStuff.loadedHighS[4];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[4];}
             } else if(diff==2) {
-                highs = DataStuff.loadedHighS[5];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[5];}
             } else if(diff==3) {
-                highs = DataStuff.loadedHighS[6];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[6];}
             } else if(diff==4) {
-                highs = DataStuff.loadedHighS[7];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[7];}
             }
         } else if(time==3) {
             if(diff==1) {
-                highs = DataStuff.loadedHighS[8];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[8];}
             } else if(diff==2) {
-                highs = DataStuff.loadedHighS[9];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[9];}
             } else if(diff==3) {
-                highs = DataStuff.loadedHighS[10];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[10];}
             } else if(diff==4) {
-                highs = DataStuff.loadedHighS[11];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[11];}
             }
         } else if(time==4) {
             if(diff==1) {
-                highs = DataStuff.loadedHighS[12];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[12];}
             } else if(diff==2) {
-                highs = DataStuff.loadedHighS[13];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[13];}
             } else if(diff==3) {
-                highs = DataStuff.loadedHighS[14];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[14];}
             } else if(diff==4) {
-                highs = DataStuff.loadedHighS[15];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[15];}
             }
         } else if(time==5) {
             if(diff==1) {
-                highs = DataStuff.loadedHighS[16];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[16];}
             } else if(diff==2) {
-                highs = DataStuff.loadedHighS[17];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[17];}
             } else if(diff==3) {
-                highs = DataStuff.loadedHighS[18];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[18];}
             } else if(diff==4) {
-                highs = DataStuff.loadedHighS[19];
+                if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[19];}
             }
         }
         mainLHSb.setText("" + highs);

@@ -62,15 +62,15 @@ public class DataStuff {
         JLabel gif = new JLabel(thegifitself);
         gif.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {Gameplay.retard();frae.dispose();}
+            public void mouseClicked(MouseEvent e){Gameplay.retard();frae.dispose();}
             @Override
-            public void mousePressed(MouseEvent e) {}
+            public void mousePressed(MouseEvent e){}
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e){}
             @Override
-            public void mouseEntered(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e){}
             @Override
-            public void mouseExited(MouseEvent e) {}
+            public void mouseExited(MouseEvent e){}
         });
 
         panl.add(info, BorderLayout.CENTER);
@@ -94,9 +94,8 @@ public class DataStuff {
                 Menu menuobj = new Menu();
                 int diff = menuobj.diff;
                 int time = menuobj.time;
-                int diffidk = 0;
-                int timeidk = 0;
-                int[] highSData = new int[20];
+                int arrayLoc = 0;
+                Integer[] highSData = new Integer[20];
                 if(loadedHighS == null) {
                     for(int e=0;e<20;e++){highSData[e]=0;}
                 } else {
@@ -108,33 +107,30 @@ public class DataStuff {
                 */
 
                 for (int l = 0; l < 5; l++) {
-                    diffidk = 0;
-                    timeidk++;
-                
-                    if (timeidk == time) {
+                    if (l == time) {
                         for (int bruh = 0; bruh < 4; bruh++) {
-                            diffidk++;
+                            arrayLoc++;
                 
-                            if (diffidk == diff) {
-                                if (Gameplay.closed < highSData[bruh]) {
-                                    highSData[bruh] = Gameplay.closed;
+                            if (bruh == diff) {
+                                if (Gameplay.closed < highSData[arrayLoc]) {
+                                    highSData[arrayLoc] = Gameplay.closed;
                                 }
                             }
                         }
-                    }
-                }                
+                    } // YOU CANT STOP ME
+                } //     FROM DOING THIS
 
                 obejctOut.writeObject(highSData);
                 // im a GENIUS
         }catch(Exception e){ExceptionHandler.handleException(e);}
     }
-    public static int[] loadedHighS;
+    public static Integer[] loadedHighS;
     public static void dataLoad() {
         try{try{try{
                 FileInputStream fileIn = new FileInputStream("highscores.ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
 
-                loadedHighS = (int[]) in.readObject();
+                loadedHighS = (Integer[]) in.readObject();
                 
                 in.close();
                 fileIn.close();

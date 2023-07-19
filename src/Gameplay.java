@@ -18,11 +18,16 @@ public class Gameplay {
     private static int loops;
     private static int delay;
 
+    private static int diff;
+    private static int time;
+
     public Gameplay() { // the actual gameplay
         try{
             Menu objMenu = new Menu();
-            loops = loopCalc(objMenu.diff, objMenu.time);
-            delay = delayCalc(objMenu.diff);
+            diff = objMenu.diff;
+            time = objMenu.time;
+            loops = loopCalc(diff, time);
+            delay = delayCalc(diff);
             countdown();
         }catch(Exception e){ExceptionHandler.handleException(e);}
     }
@@ -37,35 +42,36 @@ public class Gameplay {
     private static int thisisacertifiedbruhmoment;
     private static Timer gameplayTimer;
     private static void realActualGameplay() { // J U S T   K I -
-        gameplayTimer = new Timer(delay, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                thisisacertifiedbruhmoment = Randomizer.randomizeInt(9, 0);
+        try{
+            gameplayTimer = new Timer(delay, new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    thisisacertifiedbruhmoment = Randomizer.randomizeInt(9, 0);
 
-                switch(thisisacertifiedbruhmoment) {
-                    case 0 : popups.popup0(); break;
-                    case 1 : popups.popup1(); break;
-                    case 2 : popups.popup2(); break;
-                    case 3 : popups.popup3(); break;
-                    case 4 : popups.popup4(); break;
-                    case 5 : popups.popup5(); break;
-                    case 6 : popups.popup6(); break;
-                    case 7 : popups.popup8(); break;
-                    case 9 : popups.popup9(); break;
+                    switch(thisisacertifiedbruhmoment) {
+                        case 0 : popups.popup0(); break;
+                        case 1 : popups.popup1(); break;
+                        case 2 : popups.popup2(); break;
+                        case 3 : popups.popup3(); break;
+                        case 4 : popups.popup4(); break;
+                        case 5 : popups.popup5(); break;
+                        case 6 : popups.popup6(); break;
+                        case 7 : popups.popup8(); break;
+                        case 9 : popups.popup9(); break;
+                    }
+                    
+                    Menu objMenu = new Menu();
+                    switch(objMenu.diff) {
+                        case 1:
+                            if(loops==2&&objMenu.time==5){}else if(objMenu.time==15&&loops==15){}else if(objMenu.time==45&&loops==45){}
+                            else{try{Thread.sleep(1000);}catch(Exception ex){ExceptionHandler.handleException(ex);}}
+                            break;}
+                    counter.setText("Pop-ups closed: " + closed);
+                    if(loops==0){win();}else{}
+                    loops--;
                 }
-
-                Menu objMenu = new Menu();
-                switch(objMenu.diff) {
-                    case 1:
-                        if(loops==2&&objMenu.time==5){}else if(objMenu.time==15&&loops==15){}else if(objMenu.time==45&&loops==45){}
-                        else{try{Thread.sleep(1000);}catch(Exception ex){ExceptionHandler.handleException(ex);}}
-                        break; // FUCK CODE ORGANIZEMENT
-                    default:break;}
-                counter.setText("Pop-ups closed: " + closed);
-                if(loops==0){win();}else{}
-                loops--;
-            }
-        });
-        gameplayTimer.start();
+            });
+            gameplayTimer.start();
+        }catch(Exception e){ExceptionHandler.handleException(e);}
     }
 
     private static Timer countdownTimer;

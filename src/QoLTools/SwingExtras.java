@@ -9,7 +9,7 @@ public class SwingExtras {
         int totalElements = frames.length; 
         for(int i = 0; i < 100; i++) {
             for(int j = 0; j < totalElements; j++) {
-                frames[j].dispose();
+                if(frames[j]!=null){frames[j].dispose();}
             }
         }
     }
