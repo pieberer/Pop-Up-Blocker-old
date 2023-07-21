@@ -14,12 +14,10 @@ public class DataStuff {
     }
 
     public void dataingStuff() {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try{
-                    winningScreen();
-                }catch(Exception e){ExceptionHandler.handleException(e);}
-            }
+        SwingUtilities.invokeLater(() -> {
+            try{
+                winningScreen();
+            }catch(Exception e){ExceptionHandler.handleException(e);}
         });
     }
 
@@ -126,16 +124,15 @@ public class DataStuff {
     }
     public static Integer[] loadedHighS;
     public static void dataLoad() {
-        try{try{try{
-                FileInputStream fileIn = new FileInputStream("highscores.ser");
-                ObjectInputStream in = new ObjectInputStream(fileIn);
+        try{try{
+            FileInputStream fileIn = new FileInputStream("highscores.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
 
-                loadedHighS = (Integer[]) in.readObject();
-                
-                in.close();
-                fileIn.close();
-                }catch(Exception eee){} 
-            } catch (Exception e) {
+            loadedHighS = (Integer[]) in.readObject();
+
+            in.close();
+            fileIn.close();
+        } catch (Exception e) {
                 ExceptionHandler.handleException(e);
             }
         }catch(Exception ee) {
