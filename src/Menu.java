@@ -8,25 +8,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class Menu { // dont you think its absolutely pointless to set all these vars into private
+public class Menu {
     private JFrame mainf;
     private JPanel mainp;
-    private JLabel title;
     private JLabel subtitle;
-    private JLabel description;
     private JButton start;
-    private JButton extras;
-    private JLabel mainLHSa;
     private JLabel mainLHSb;
-    private JButton timer5;
-    private JButton timer15;
-    private JButton timer30;
-    private JButton timer45;
-    private JButton timer60;
-    private JButton diff1;
-    private JButton diff2;
-    private JButton diff3;
-    private JButton diff4;
     private JLabel timerTitle;
     private JLabel diffTitle;
     private JLabel diffDescription;
@@ -34,25 +21,12 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     private final Font subtitleFont = new Font("Arial", Font.BOLD + Font.ITALIC, 12);
 
     private JPanel mainp2;
-    private JButton p2Back;
-    private JLabel version;
-    private JLabel credits;
-    private JLabel changelog;
-    private JLabel pieb;
-    private JLabel toby;
-    private JLabel chatgpt;
 
     public int diff = 0;
     public int time = 0;
     
     private int highs = 0;
 
-    private int swidth;
-    private  int sheight;
-    private int swcenter;
-    private int shcenter;
-    private final int mainfsx = 616; // dont mind this very specific size
-    private final int mainfsy = 750;
     public void GUI(Menu menu){ // make it accept menu object
         // most important
         DataStuff.dataLoad();
@@ -62,15 +36,22 @@ public class Menu { // dont you think its absolutely pointless to set all these 
             ImageIcon icon = new ImageIcon("assets/icon.png");
             mainf.setIconImage(icon.getImage());
             mainf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            // dont mind this very specific size
+            int mainfsx = 616;
+            int mainfsy = 750;
             mainf.setSize(mainfsx, mainfsy);
             mainf.setResizable(false);
             // the frame location
-            swidth = ScreenDimensions.getWidth();
-            sheight = ScreenDimensions.getHeight();
-            swcenter = swidth / 2;
-            shcenter = sheight / 2;
+            int swidth = ScreenDimensions.getWidth();
+            int sheight = ScreenDimensions.getHeight();
+            int swcenter = swidth / 2;
+            int shcenter = sheight / 2;
             mainf.setLocation(swcenter - mainfsx / 2, shcenter - mainfsy / 2);
             // main stuff
+            JLabel title;
+            JLabel description;
+            JButton extras;
+            JLabel mainLHSa;
             {
                 title = new JLabel("Pop Up Blocker");
                 title.setHorizontalAlignment(SwingConstants.CENTER);
@@ -128,6 +109,11 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                 mainLHSb.setForeground(Color.WHITE);
             }
             // timer stuff
+            JButton timer5;
+            JButton timer15;
+            JButton timer30;
+            JButton timer45;
+            JButton timer60;
             {
                 timerTitle = new JLabel("Choose the time");
                 timerTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -225,6 +211,10 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                 }
             }
             // difficulty stuff
+            JButton diff1;
+            JButton diff2;
+            JButton diff3;
+            JButton diff4;
             {
                 diffTitle = new JLabel("Choose difficulty");
                 diffTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -350,7 +340,7 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                 mainp2.setLayout(null);
                 mainp2.setBackground(Color.DARK_GRAY);
 
-                p2Back = new JButton("Go back");
+                JButton p2Back = new JButton("Go back");
                 p2Back.setBounds(0, 685, 100, 25);
                 p2Back.setBackground(Color.WHITE);
                 p2Back.setForeground(Color.BLACK);
@@ -360,30 +350,30 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                     mainf.revalidate();
                     mainf.repaint();
                 });
-                version = new JLabel("Version 1.0");
+                JLabel version = new JLabel("Version 1.0");
                 version.setBounds(110, 690, 100, 25);
                 version.setForeground(Color.WHITE);
                 
                 Font creditsFont = new Font("Arial", Font.BOLD, 15);
-                credits = new JLabel("<html>Credits:<br/>Developed by pieb (hes epic)<br/>Musics by Toby Fox (cool music and game)<br/>Special thanks to ChatGPT (helped me a lot)<html>");
+                JLabel credits = new JLabel("<html>Credits:<br/>Developed by pieb (hes epic)<br/>Musics by Toby Fox (cool music and game)<br/>Special thanks to ChatGPT (helped me a lot)<html>");
                 credits.setBounds(50, 0, 350, 250);
                 credits.setFont(creditsFont);
                 credits.setForeground(Color.WHITE);
 
-                changelog = new JLabel("<html>Changelog 1.0: <br>- the game was just made lmfao<html>");
+                JLabel changelog = new JLabel("<html>Changelog 1.0: <br>- the game was just made lmfao<html>");
                 changelog.setBounds(275, 475, 250, 250);
                 changelog.setForeground(Color.WHITE);
 
                 // TODO: these gifs
-                pieb = new JLabel("pieb gif goes here");
+                JLabel pieb = new JLabel("pieb gif goes here");
                 pieb.setBounds(385, 50, 200, 15);
                 pieb.setForeground(Color.WHITE);
 
                 ImageIcon tobyGif = new ImageIcon("assets/textures/toby.gif");
-                toby = new JLabel(tobyGif);
+                JLabel toby = new JLabel(tobyGif);
                 toby.setBounds(450, 150, toby.getIcon().getIconWidth(), toby.getIcon().getIconHeight());
 
-                chatgpt = new JLabel("chatgpt gif goes here");
+                JLabel chatgpt = new JLabel("chatgpt gif goes here");
                 chatgpt.setBounds(150, 250, 200, 15);
                 chatgpt.setForeground(Color.WHITE);
                 // finishing the panel (i dont use array, im not cool)
@@ -429,57 +419,21 @@ public class Menu { // dont you think its absolutely pointless to set all these 
         System.out.println(time + " " + diff);
     }
     private void highSLabel() {
-        if(time==1) {
-            if(diff==1) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[0];}}catch(Exception ignored){}
-            } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[1]!=null){highs = DataStuff.loadedHighS[1];}}catch(Exception ignored){}
-            } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[2]!=null){highs = DataStuff.loadedHighS[2];}}catch(Exception ignored){}
-            } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[3]!=null){highs = DataStuff.loadedHighS[3];}}catch(Exception ignored){}
+        int arrayLoc = 0;
+        for(int a = 1; a < 6; a++) {
+            for(int b = 1; b < 5; b++) {
+                arrayLoc++;
+                if(a == time) {
+                    if(b == diff) {
+                        try{
+                            if(DataStuff.loadedHighS[arrayLoc] != null) {
+                                highs = DataStuff.loadedHighS[arrayLoc];
+                            }
+                        }catch(Exception ignored){}
+                    }
+                }
             }
-        } else if(time==2) {
-            if(diff==1) {
-                try{if(DataStuff.loadedHighS[4]!=null){highs = DataStuff.loadedHighS[4];}}catch(Exception ignored){}
-            } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[5]!=null){highs = DataStuff.loadedHighS[5];}}catch(Exception ignored){}
-            } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[6]!=null){highs = DataStuff.loadedHighS[6];}}catch(Exception ignored){}
-            } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[7]!=null){highs = DataStuff.loadedHighS[7];}}catch(Exception ignored){}
-            }
-        } else if(time==3) {
-            if(diff==1) {
-                try{if(DataStuff.loadedHighS[8]!=null){highs = DataStuff.loadedHighS[8];}}catch(Exception ignored){}
-            } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[9]!=null){highs = DataStuff.loadedHighS[9];}}catch(Exception ignored){}
-            } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[10]!=null){highs = DataStuff.loadedHighS[10];}}catch(Exception ignored){}
-            } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[11]!=null){highs = DataStuff.loadedHighS[11];}}catch(Exception ignored){}
-            }
-        } else if(time==4) {
-            if(diff==1) {
-                try{if(DataStuff.loadedHighS[12]!=null){highs = DataStuff.loadedHighS[12];}}catch(Exception ignored){}
-            } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[13]!=null){highs = DataStuff.loadedHighS[13];}}catch(Exception ignored){}
-            } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[14]!=null){highs = DataStuff.loadedHighS[14];}}catch(Exception ignored){}
-            } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[15]!=null){highs = DataStuff.loadedHighS[15];}}catch(Exception ignored){}
-            }
-        } else if(time==5) {
-            if(diff==1) {
-                try{if(DataStuff.loadedHighS[16]!=null){highs = DataStuff.loadedHighS[16];}}catch(Exception ignored){}
-            } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[17]!=null){highs = DataStuff.loadedHighS[17];}}catch(Exception ignored){}
-            } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[18]!=null){highs = DataStuff.loadedHighS[18];}}catch(Exception ignored){}
-            } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[19]!=null){highs = DataStuff.loadedHighS[19];}}catch(Exception ignored){}
-            }
-        }
+        } // epic nesting
         mainLHSb.setText(String.valueOf(highs));
     }
     private void mouseExitTimer() {

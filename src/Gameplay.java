@@ -248,8 +248,8 @@ public class Gameplay {
         totalFrame();
         gameplayTimer.stop();
         SwingExtras.frameDisposeAll(popupFrames);
-        if(theuhhhframeyeah==null){}else{theuhhhframeyeah.dispose();}
-        if(ppcf==null){}else{ppcf.dispose();}
+        if(theuhhhframeyeah!=null){theuhhhframeyeah.dispose();}
+        if(ppcf!=null){ppcf.dispose();}
         AudioPlayer.stopAudio();
         timerc.stop();
     }
@@ -274,7 +274,7 @@ public class Gameplay {
 
     public static void retard(Menu menu) {
         try{
-            if(gameplayTimer==null){}else{gameplayTimer.stop();}
+            if(gameplayTimer!=null){gameplayTimer.stop();}
             totalFrame();
             SwingExtras.frameDisposeAll(popupFrames);
             AudioPlayer.stopAudio();
@@ -356,7 +356,7 @@ public class Gameplay {
         } else {
             System.out.println("Something's wrong in the loops calculator.");
             System.out.println("The time: " + lcTime + " and the difficulty: " + lcDiff);
-        }
+        } // for debugging
         return l;
     }
     private static int delayCalc(int dcDiff) {
