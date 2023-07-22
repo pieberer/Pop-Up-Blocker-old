@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="piebrary">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/piebrary.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

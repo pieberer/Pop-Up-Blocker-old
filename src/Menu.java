@@ -30,8 +30,8 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     private JLabel timerTitle;
     private JLabel diffTitle;
     private JLabel diffDescription;
-    private Font titleFont = new Font("Arial", Font.BOLD + Font.ITALIC, 48);
-    private Font subtitleFont = new Font("Arial", Font.BOLD + Font.ITALIC, 12);
+    private final Font titleFont = new Font("Arial", Font.BOLD + Font.ITALIC, 48);
+    private final Font subtitleFont = new Font("Arial", Font.BOLD + Font.ITALIC, 12);
 
     private JPanel mainp2;
     private JButton p2Back;
@@ -51,9 +51,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     private  int sheight;
     private int swcenter;
     private int shcenter;
-    private int mainfsx = 616; // dont mind this very specific size
-    private int mainfsy = 750;
-    public void GUI(){
+    private final int mainfsx = 616; // dont mind this very specific size
+    private final int mainfsy = 750;
+    public void GUI(Menu menu){ // make it accept menu object
         // most important
         DataStuff.dataLoad();
         try{
@@ -99,15 +99,12 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                 start.setBounds(400, 100, 150, 100);
                 start.setBackground(Color.GRAY);
                 start.setForeground(Color.RED);
-                start.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        if(diff != 0 && time != 0) {
-                            mainf.dispose();
-                            AudioPlayer.stopAudio();
-                            Menu obj = new Menu();
-                            Gameplay a = new Gameplay();
-                            a.game(obj);
-                        }
+                start.addActionListener(e -> {
+                    if(diff != 0 && time != 0) {
+                        mainf.dispose();
+                        AudioPlayer.stopAudio();
+                        Gameplay a = new Gameplay();
+                        a.game(menu);
                     }
                 });
                 extras = new JButton("Extras");
@@ -115,19 +112,17 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                 extras.setBounds(25, 200, 100, 25);
                 extras.setBackground(Color.WHITE);
                 extras.setForeground(Color.BLACK);
-                extras.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        mainf.getContentPane().remove(mainp);
-                        mainf.getContentPane().add(mainp2);
-                        mainf.revalidate();
-                        mainf.repaint();
-                    }
+                extras.addActionListener(e -> {
+                    mainf.getContentPane().remove(mainp);
+                    mainf.getContentPane().add(mainp2);
+                    mainf.revalidate();
+                    mainf.repaint();
                 });
                 mainLHSa = new JLabel("Highscore (time = " + time + " + diff = " + diff + "):");
                 mainLHSa.setBounds(375, 200, 200, 15);          
                 mainLHSa.setHorizontalAlignment(SwingConstants.CENTER);
                 mainLHSa.setForeground(Color.WHITE);  
-                mainLHSb = new JLabel("" + highs);
+                mainLHSb = new JLabel(String.valueOf(highs));
                 mainLHSb.setBounds(375, 215, 200, 15);
                 mainLHSb.setHorizontalAlignment(SwingConstants.CENTER);
                 mainLHSb.setForeground(Color.WHITE);
@@ -151,11 +146,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitTimer();
                         }
                     });
-                    timer5.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            time = 5;
-                            startJBCol();
-                        }
+                    timer5.addActionListener(e -> {
+                        time = 5;
+                        startJBCol();
                     });
                 }
                 { // 15 seconds timer button
@@ -171,11 +164,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitTimer();
                         }
                     });
-                    timer15.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            time = 15;
-                            startJBCol();
-                        }
+                    timer15.addActionListener(e -> {
+                        time = 15;
+                        startJBCol();
                     });
                 }
                 { // 30 seconds timer button
@@ -191,11 +182,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitTimer();
                         }
                     });
-                    timer30.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            time = 30;
-                            startJBCol();
-                        }
+                    timer30.addActionListener(e -> {
+                        time = 30;
+                        startJBCol();
                     });
                 }
                 { // 45 seconds timer button
@@ -211,11 +200,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitTimer();
                         }
                     });
-                    timer45.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            time = 45;
-                            startJBCol();
-                        }
+                    timer45.addActionListener(e -> {
+                        time = 45;
+                        startJBCol();
                     });
                 }
                 { // 60 seconds timer button
@@ -231,11 +218,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitTimer();
                         }
                     });
-                    timer60.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            time = 60;
-                            startJBCol();
-                        }
+                    timer60.addActionListener(e -> {
+                        time = 60;
+                        startJBCol();
                     });
                 }
             }
@@ -263,11 +248,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitDiff();
                         }
                     });
-                    diff1.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            diff = 1;
-                            startJBCol();
-                        }
+                    diff1.addActionListener(e -> {
+                        diff = 1;
+                        startJBCol();
                     });
                 }
                 { // med diff (window appears every 1 second)
@@ -284,11 +267,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitDiff();
                         }
                     });
-                    diff2.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            diff = 2;
-                            startJBCol();
-                        }
+                    diff2.addActionListener(e -> {
+                        diff = 2;
+                        startJBCol();
                     });
                 }
                 { // hard diff (window appears every 0.5 second)
@@ -305,11 +286,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitDiff();
                         }
                     });
-                    diff3.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            diff = 3;
-                            startJBCol();
-                        }
+                    diff3.addActionListener(e -> {
+                        diff = 3;
+                        startJBCol();
                     });
                 }
                 { // extreme diff (window appears every 0.1 second) (also give warning that it might be heavy)
@@ -326,11 +305,9 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                             mouseExitDiff();
                         }
                     });
-                    diff4.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            diff = 4;
-                            startJBCol();
-                        }
+                    diff4.addActionListener(e -> {
+                        diff = 4;
+                        startJBCol();
                     });
                 }
             }
@@ -377,13 +354,11 @@ public class Menu { // dont you think its absolutely pointless to set all these 
                 p2Back.setBounds(0, 685, 100, 25);
                 p2Back.setBackground(Color.WHITE);
                 p2Back.setForeground(Color.BLACK);
-                p2Back.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        mainf.getContentPane().remove(mainp2);
-                        mainf.getContentPane().add(mainp);
-                        mainf.revalidate();
-                        mainf.repaint();
-                    }
+                p2Back.addActionListener(e -> {
+                    mainf.getContentPane().remove(mainp2);
+                    mainf.getContentPane().add(mainp);
+                    mainf.revalidate();
+                    mainf.repaint();
                 });
                 version = new JLabel("Version 1.0");
                 version.setBounds(110, 690, 100, 25);
@@ -456,101 +431,89 @@ public class Menu { // dont you think its absolutely pointless to set all these 
     private void highSLabel() {
         if(time==1) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[0];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[0]!=null){highs = DataStuff.loadedHighS[0];}}catch(Exception ignored){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[1]!=null){highs = DataStuff.loadedHighS[1];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[1]!=null){highs = DataStuff.loadedHighS[1];}}catch(Exception ignored){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[2]!=null){highs = DataStuff.loadedHighS[2];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[2]!=null){highs = DataStuff.loadedHighS[2];}}catch(Exception ignored){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[3]!=null){highs = DataStuff.loadedHighS[3];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[3]!=null){highs = DataStuff.loadedHighS[3];}}catch(Exception ignored){}
             }
         } else if(time==2) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[4]!=null){highs = DataStuff.loadedHighS[4];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[4]!=null){highs = DataStuff.loadedHighS[4];}}catch(Exception ignored){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[5]!=null){highs = DataStuff.loadedHighS[5];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[5]!=null){highs = DataStuff.loadedHighS[5];}}catch(Exception ignored){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[6]!=null){highs = DataStuff.loadedHighS[6];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[6]!=null){highs = DataStuff.loadedHighS[6];}}catch(Exception ignored){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[7]!=null){highs = DataStuff.loadedHighS[7];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[7]!=null){highs = DataStuff.loadedHighS[7];}}catch(Exception ignored){}
             }
         } else if(time==3) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[8]!=null){highs = DataStuff.loadedHighS[8];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[8]!=null){highs = DataStuff.loadedHighS[8];}}catch(Exception ignored){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[9]!=null){highs = DataStuff.loadedHighS[9];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[9]!=null){highs = DataStuff.loadedHighS[9];}}catch(Exception ignored){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[10]!=null){highs = DataStuff.loadedHighS[10];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[10]!=null){highs = DataStuff.loadedHighS[10];}}catch(Exception ignored){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[11]!=null){highs = DataStuff.loadedHighS[11];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[11]!=null){highs = DataStuff.loadedHighS[11];}}catch(Exception ignored){}
             }
         } else if(time==4) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[12]!=null){highs = DataStuff.loadedHighS[12];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[12]!=null){highs = DataStuff.loadedHighS[12];}}catch(Exception ignored){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[13]!=null){highs = DataStuff.loadedHighS[13];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[13]!=null){highs = DataStuff.loadedHighS[13];}}catch(Exception ignored){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[14]!=null){highs = DataStuff.loadedHighS[14];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[14]!=null){highs = DataStuff.loadedHighS[14];}}catch(Exception ignored){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[15]!=null){highs = DataStuff.loadedHighS[15];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[15]!=null){highs = DataStuff.loadedHighS[15];}}catch(Exception ignored){}
             }
         } else if(time==5) {
             if(diff==1) {
-                try{if(DataStuff.loadedHighS[16]!=null){highs = DataStuff.loadedHighS[16];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[16]!=null){highs = DataStuff.loadedHighS[16];}}catch(Exception ignored){}
             } else if(diff==2) {
-                try{if(DataStuff.loadedHighS[17]!=null){highs = DataStuff.loadedHighS[17];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[17]!=null){highs = DataStuff.loadedHighS[17];}}catch(Exception ignored){}
             } else if(diff==3) {
-                try{if(DataStuff.loadedHighS[18]!=null){highs = DataStuff.loadedHighS[18];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[18]!=null){highs = DataStuff.loadedHighS[18];}}catch(Exception ignored){}
             } else if(diff==4) {
-                try{if(DataStuff.loadedHighS[19]!=null){highs = DataStuff.loadedHighS[19];}}catch(Exception a){}
+                try{if(DataStuff.loadedHighS[19]!=null){highs = DataStuff.loadedHighS[19];}}catch(Exception ignored){}
             }
         }
-        mainLHSb.setText("" + highs);
+        mainLHSb.setText(String.valueOf(highs));
     }
     private void mouseExitTimer() {
         switch (time) {
-            case 5:
-                timerTitle.setText("5 seconds");
-                break;
-            case 15:
-                timerTitle.setText("15 seconds");
-                break;
-            case 30:
-                timerTitle.setText("30 seconds");
-                break;
-            case 45:
-                timerTitle.setText("45 seconds");
-                break;
-            case 60:
-                timerTitle.setText("60 seconds");
-                break;
-            default:
-                timerTitle.setText("Choose the time");
-                break;
+            case 5 -> timerTitle.setText("5 seconds");
+            case 15 -> timerTitle.setText("15 seconds");
+            case 30 -> timerTitle.setText("30 seconds");
+            case 45 -> timerTitle.setText("45 seconds");
+            case 60 -> timerTitle.setText("60 seconds");
+            default -> timerTitle.setText("Choose the time");
         }
     }
     private void mouseExitDiff() {
         switch (diff) {
-            case 1:
+            case 1 -> {
                 diffTitle.setText("<html><span style='color: lime;'>Easy difficulty</span>");
                 diffDescription.setText("<html>A pop up appears every 2 seconds. For noobs who are new to the game.<html>");
-                break;
-            case 2:
+            }
+            case 2 -> {
                 diffTitle.setText("<html><span style='color: yellow;'>Medium difficulty</span>");
                 diffDescription.setText("<html>A pop up appears every 1 second. For people who aren't new.");
-                break;
-            case 3:
+            }
+            case 3 -> {
                 diffTitle.setText("<html><span style='color: orange;'>Hard difficulty</span>");
-                diffDescription.setText("<html>A pop up appears every 0.5 seconds. For pros who... uhhh... plays the game.<html>");
-                break;
-            case 4:
+                diffDescription.setText("<html>A pop up appears every 0.5 seconds. For pros who... uh... plays the game.<html>");
+            }
+            case 4 -> {
                 diffTitle.setText("<html><span style='color: red;'>Extreme difficulty</span>");
                 diffDescription.setText("<html>A pop up will appear every 0.1 seconds. For true pros. \n<span style='color: red;'>WARNING: might affect your performance. Also kinda buggy</span><html>");
-                break;  
-            default:
+            }
+            default -> {
                 diffTitle.setText("Choose difficulty");
                 diffDescription.setText("");
-                break;
+            }
         }
     }
 }

@@ -10,26 +10,26 @@ import java.io.*;
 
 public class DataStuff {
     public static void main(String[] args) {
-        dataSave();
+        Menu menu = new Menu();
+        winningScreen(menu);
     }
 
-    public void dataingStuff() {
+    public void dataingStuff(Menu menu) {
         SwingUtilities.invokeLater(() -> {
             try{
-                winningScreen();
+                winningScreen(menu);
             }catch(Exception e){ExceptionHandler.handleException(e);}
         });
     }
 
-    private static void winningScreen() {
+    private static void winningScreen(Menu menu) {
         /* I tried. I tried. But I can't
-         * I tried to install javafx to play the video for the yippee but i couldn't.
+         * I tried to install javafx to play the video for the yippee, but I couldn't.
          * It was simply too hard for me to understand.
          * This is my message.
          *                  - pieb
          */
-        Menu obj = new Menu();
-
+        // hey they got javafx on intellij
         JFrame frae = new JFrame("Congrats!");
         frae.setSize(500, 625);
         int swcenter = ScreenDimensions.getWidth() / 2;
@@ -50,26 +50,16 @@ public class DataStuff {
         label.setFont(fo);
 
         String stormg = String.format(
-            "<html>Pop ups closed: %d<br>Difficulty: %d<br>Time: %d</html>", Gameplay.closed, obj.diff, obj.time
+            "<html>Pop ups closed: %d<br>Difficulty: %d<br>Time: %d</html>", Gameplay.closed, menu.diff, menu.time
         );
         JLabel info = new JLabel(stormg);
         info.setForeground(Color.WHITE);
         info.setHorizontalAlignment(SwingConstants.CENTER);
         
-        ImageIcon thegifitself = new ImageIcon("assets/textures/yippee.gif");
-        JLabel gif = new JLabel(thegifitself);
-        gif.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e){Gameplay.retard();frae.dispose();}
-            @Override
-            public void mousePressed(MouseEvent e){}
-            @Override
-            public void mouseReleased(MouseEvent e){}
-            @Override
-            public void mouseEntered(MouseEvent e){}
-            @Override
-            public void mouseExited(MouseEvent e){}
-        });
+        ImageIcon theGifItself = new ImageIcon("assets/textures/yippee.gif");
+        JLabel gif = new JLabel(theGifItself);
+        gif.addMouseListener(new MouseAdapter() {
+            @Override public void mouseClicked(MouseEvent e){Gameplay.retard(menu);frae.dispose();}});
 
         panl.add(info, BorderLayout.CENTER);
         panl.add(gif, BorderLayout.SOUTH);
@@ -78,7 +68,7 @@ public class DataStuff {
             @Override
             public void windowClosing(WindowEvent e) {
                 AudioPlayer.stopAudio();
-                obj.GUI();
+                menu.GUI(menu);
                 dataSave();
             }
         });
@@ -89,10 +79,8 @@ public class DataStuff {
     private static void dataSave() {
         try (FileOutputStream fileOut = new FileOutputStream("highscores.ser");
             ObjectOutputStream obejctOut = new ObjectOutputStream(fileOut)) {
-                Menu menuobj = new Menu();
-                int diff = menuobj.diff;
-                int time = menuobj.time;
-                int arrayLoc = 0;
+                Menu menu = new Menu();
+                int arrayLoc = -1;
                 Integer[] highSData = new Integer[20];
                 if(loadedHighS == null) {
                     for(int e=0;e<20;e++){highSData[e]=0;}
@@ -104,39 +92,39 @@ public class DataStuff {
                 * HEY NO CHEATING
                 */
 
-                for (int l = 0; l < 5; l++) {
-                    if (l == time) {
-                        for (int bruh = 0; bruh < 4; bruh++) {
-                            arrayLoc++;
-                
-                            if (bruh == diff) {
-                                if (Gameplay.closed < highSData[arrayLoc]) {
+                for (int l = 1; l < 6; l++) {
+                    for (int bruh = 1; bruh < 5; bruh++) {
+                        arrayLoc++;
+                        if(l == menu.time) {
+                            if (bruh == menu.diff) {
+                                if (Gameplay.closed > highSData[arrayLoc]) {
                                     highSData[arrayLoc] = Gameplay.closed;
                                 }
                             }
                         }
-                    } // YOU CANT STOP ME
-                } //     FROM DOING THIS
-
+                    }
+                }
                 obejctOut.writeObject(highSData);
                 // im a GENIUS
         }catch(Exception e){ExceptionHandler.handleException(e);}
     }
     public static Integer[] loadedHighS;
     public static void dataLoad() {
-        try{try{
-            FileInputStream fileIn = new FileInputStream("highscores.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-
-            loadedHighS = (Integer[]) in.readObject();
-
-            in.close();
-            fileIn.close();
-        } catch (Exception e) {
-                ExceptionHandler.handleException(e);
-            }
-        }catch(Exception ee) {
-            ExceptionHandler.handleException(ee);
-        }
+        try{
+            FileInputStream fileIn;
+            ObjectInputStream in;
+            try{
+                try {
+                    try {
+                        fileIn = new FileInputStream("highscores.ser");
+                        in = new ObjectInputStream(fileIn);
+                        loadedHighS = (Integer[]) in.readObject();
+                        in.close();
+                        fileIn.close();
+                    }catch(Exception ignore){}
+                }catch(Exception eee){ExceptionHandler.handleException(eee);}
+            }catch(Exception e){ExceptionHandler.handleException(e);}
+        }catch(Exception ee){ExceptionHandler.handleException(ee);}
     }
 }
+// GOD DAMNIT INTELLIJ STOP BEING GRAMMARLY YOU SUCK ASS

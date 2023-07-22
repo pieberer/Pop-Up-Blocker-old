@@ -1,9 +1,17 @@
 import javax.swing.*;
+
 import QoLTools.SwingExtras;
 import java.awt.event.*;
 import java.awt.*;
 
 public class popups {
+    public static void main(String[] args) {
+        popup3();
+    }
+    private static Menu menu;
+    public popups(Menu input) {
+        menu = input;
+    }
     public static JFrame pp0f;
     public static JFrame pp1f;
     public static JFrame pp2f;
@@ -25,7 +33,7 @@ public class popups {
         imageLabel.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
         imageLabel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                Gameplay.retard();
+                Gameplay.retard(menu);
             }
         });
         JLabel label = new JLabel("HOT CHICKS NEAR YOU");
@@ -41,7 +49,7 @@ public class popups {
         pp0f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp0f.setVisible(true);
@@ -57,7 +65,7 @@ public class popups {
         gifLabel.setBounds(25, 10, gif.getIconWidth() + 50, gif.getIconHeight() + 20);
         gifLabel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                Gameplay.retard();
+                Gameplay.retard(menu);
             }
         });
         JLabel label = new JLabel("<html>ARE YOU SURE YOU WANT TO DOWNLOAD THE FILE???<html>");
@@ -68,33 +76,59 @@ public class popups {
         pp1f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp1f.setVisible(true);
     }
     protected static void popup2() {
-        pp2f = new JFrame();
+        pp2f = new JFrame("ANNOYING POP UPS AHEAD");
+        pp2f.setSize(300, 207);
+        pp2f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp2p = new JPanel();
-        pp2p.setLayout(null);
+
+        ImageIcon annoy = new ImageIcon("assets/textures/popups/annoyingpopup.png");
+        JLabel annnoying = new JLabel(annoy);
+        annnoying.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Gameplay.retard(menu);
+            }
+        });
+
+        pp2p.setLayout(new BorderLayout());
+        pp2p.add(annnoying, BorderLayout.CENTER);
         pp2f.add(pp2p);
         pp2f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp2f.setVisible(true);
     }
     protected static void popup3() {
-        pp3f = new JFrame();
+        pp3f = new JFrame("WATCH MORBIUS IN 1 APRIL");
+        pp3f.setSize(268, 412);
+        pp3f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp3p = new JPanel();
-        pp3p.setLayout(null);
+        pp3p.setLayout(new BorderLayout());
+
+        ImageIcon mor = new ImageIcon("assets/textures/popups/MORBIUS.png");
+        JLabel morb = new JLabel(mor);
+        morb.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Gameplay.retard(menu);
+            }
+        });
+
+        pp3p.add(morb, BorderLayout.CENTER);
         pp3f.add(pp3p);
         pp3f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp3f.setVisible(true);
@@ -107,7 +141,7 @@ public class popups {
         pp4f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp4f.setVisible(true);
@@ -120,7 +154,7 @@ public class popups {
         pp5f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp5f.setVisible(true);
@@ -133,7 +167,7 @@ public class popups {
         pp6f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp6f.setVisible(true);
@@ -146,7 +180,7 @@ public class popups {
         pp7f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp7f.setVisible(true);
@@ -159,7 +193,7 @@ public class popups {
         pp8f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp8f.setVisible(true);
@@ -172,7 +206,7 @@ public class popups {
         pp9f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Gameplay.closed+=1;
+                Gameplay.closed++;
             }
         });
         pp9f.setVisible(true);
