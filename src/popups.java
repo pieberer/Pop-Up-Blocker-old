@@ -3,15 +3,14 @@ import javax.swing.*;
 import QoLTools.SwingExtras;
 import java.awt.event.*;
 import java.awt.*;
+import java.net.URI;
 
 public class popups {
-    public static void main(String[] args) {
-        popup3();
-    }
     private static Menu menu;
     public popups(Menu input) {
         menu = input;
     }
+
     public static JFrame pp0f;
     public static JFrame pp1f;
     public static JFrame pp2f;
@@ -22,10 +21,11 @@ public class popups {
     public static JFrame pp7f;
     public static JFrame pp8f;
     public static JFrame pp9f;
+
     protected static void popup0() {
         pp0f = new JFrame("HOT CHICKS");
         pp0f.setSize(348, 275);
-        pp0f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
+        pp0f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
         JPanel pp0p = new JPanel();
         ImageIcon img = new ImageIcon("assets/textures/popups/hot chicks.png");
         JLabel imageLabel = new JLabel(img);
@@ -56,7 +56,7 @@ public class popups {
     protected static void popup1() {
         pp1f = new JFrame("DOWNLOAD NOW");
         pp1f.setSize(300, 200);
-        pp1f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
+        pp1f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
         JPanel pp1p = new JPanel();
         pp1p.setLayout(null);
         ImageIcon gif = new ImageIcon("assets/textures/popups/sketchy ass button.gif");
@@ -83,7 +83,7 @@ public class popups {
     protected static void popup2() {
         pp2f = new JFrame("ANNOYING POP UPS AHEAD");
         pp2f.setSize(300, 207);
-        pp2f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
+        pp2f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
         JPanel pp2p = new JPanel();
 
         ImageIcon annoy = new ImageIcon("assets/textures/popups/annoyingpopup.png");
@@ -109,7 +109,7 @@ public class popups {
     protected static void popup3() {
         pp3f = new JFrame("WATCH MORBIUS IN 1 APRIL");
         pp3f.setSize(268, 412);
-        pp3f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
+        pp3f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
         JPanel pp3p = new JPanel();
         pp3p.setLayout(new BorderLayout());
 
@@ -134,7 +134,8 @@ public class popups {
     }
     protected static void popup4() {
         pp4f = new JFrame("you have virus");
-        pp4f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
+        pp4f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
+        pp4f.setSize(405, 346);
         JPanel pp4p = new JPanel();
         pp4p.setLayout(new BorderLayout());
 
@@ -160,10 +161,22 @@ public class popups {
         pp4f.setVisible(true);
     }
     protected static  void popup5() {
-        pp5f = new JFrame();
-        pp5f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
+        pp5f = new JFrame("Make money now!");
+        pp5f.setSize(910, 630);
+        pp5f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
         JPanel pp5p = new JPanel();
-        pp5p.setLayout(null);
+        pp5p.setLayout(new BorderLayout());
+
+        ImageIcon image = new ImageIcon("assets/textures/popups/crypto.png");
+        JLabel theresNoFunnyVariableNamingHere = new JLabel(image);
+        theresNoFunnyVariableNamingHere.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Gameplay.retard(menu);
+            }
+        });
+
+        pp5p.add(theresNoFunnyVariableNamingHere, BorderLayout.CENTER);
         pp5f.add(pp5p);
         pp5f.addWindowListener(new WindowAdapter() {
             @Override
@@ -174,10 +187,22 @@ public class popups {
         pp5f.setVisible(true);
     }
     protected static void popup6() {
-        pp6f = new JFrame();
-        pp6f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
+        pp6f = new JFrame("GET FREE ROBUX");
+        pp6f.setSize(650, 390);
+        pp6f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
         JPanel pp6p = new JPanel();
-        pp6p.setLayout(null);
+        pp6p.setLayout(new BorderLayout());
+
+        ImageIcon theImageItselfLMFAO = new ImageIcon("assets/textures/popups/robux.png");
+        JLabel imLazyToGetFunnyVariableNames = new JLabel(theImageItselfLMFAO);
+        imLazyToGetFunnyVariableNames.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Gameplay.retard(menu);
+            }
+        });
+
+        pp6p.add(imLazyToGetFunnyVariableNames, BorderLayout.CENTER);
         pp6f.add(pp6p);
         pp6f.addWindowListener(new WindowAdapter() {
             @Override
@@ -188,10 +213,22 @@ public class popups {
         pp6f.setVisible(true);
     }
     protected static void popup7() {
-        pp7f = new JFrame();
-        pp7f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
+        pp7f = new JFrame("Free IPhone 11 Pro Max!");
+        pp7f.setSize(670, 452);
+        pp7f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
         JPanel pp7p = new JPanel();
-        pp7p.setLayout(null);
+        pp7p.setLayout(new BorderLayout());
+
+        ImageIcon thereIsNoMore = new ImageIcon("assets/textures/popups/giveaway.png");
+        JLabel funnySoundingVariableNamesAnymoreBeyondThisPoint = new JLabel(thereIsNoMore);
+        funnySoundingVariableNamesAnymoreBeyondThisPoint.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Gameplay.retard(menu);
+            }
+        });
+
+        pp7p.add(funnySoundingVariableNamesAnymoreBeyondThisPoint);
         pp7f.add(pp7p);
         pp7f.addWindowListener(new WindowAdapter() {
             @Override
@@ -203,10 +240,20 @@ public class popups {
     }
     protected static void popup8() {
         pp8f = new JFrame();
-        pp8f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
-        JPanel pp8p = new JPanel();
-        pp8p.setLayout(null);
-        pp8f.add(pp8p);
+        pp8f.setSize(204, 289);
+        pp8f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
+        pp8f.setLayout(new BorderLayout());
+
+        ImageIcon asISaidThereIsNoFunnySoundingVariablesAfterThis = new ImageIcon("assets/textures/popups/bing.png");
+        JLabel bye = new JLabel(asISaidThereIsNoFunnySoundingVariablesAfterThis);
+        bye.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Gameplay.retard(menu);
+            }
+        });
+
+        pp8f.add(bye, BorderLayout.CENTER);
         pp8f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -216,11 +263,25 @@ public class popups {
         pp8f.setVisible(true);
     }
     protected static void popup9() {
-        pp9f = new JFrame();
-        pp9f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
-        JPanel pp9p = new JPanel();
-        pp9p.setLayout(null);
-        pp9f.add(pp9p);
+        pp9f = new JFrame("Download Pop Up Blocker Right Here!");
+        pp9f.setSize(610, 330);
+        pp9f.setLocation(SwingExtras.jframeRandomX(348), SwingExtras.jframeRandomY(275));
+        pp9f.setLayout(new BorderLayout());
+
+        ImageIcon image = new ImageIcon("assets/textures/popups/Pop-Up-Blocker.png");
+        JLabel label = new JLabel(image);
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/EpicPieb/Pop-Up-Blocker"));
+                    Gameplay.closed++;
+                    pp9f.dispose();
+                }catch(Exception ignored){}
+            }
+        });
+
+        pp9f.add(label, BorderLayout.CENTER);
         pp9f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

@@ -31,7 +31,7 @@ public class Gameplay {
 
     private static void actualGameplay(Menu menu) { // JUST KIDDING, THIS IS THE REAL ACTUAL GAMEPLAY!
         try{
-            popupc();
+            popupc(menu);
             realActualGameplay(menu);
         }catch(Exception e){ExceptionHandler.handleException(e);}
     }
@@ -153,9 +153,8 @@ public class Gameplay {
 
     private static JFrame ppcf;
     private static JFrame theuhhhframeyeah;
-    private static void popupcTimer() {
-        Menu objMenu = new Menu();
-        switch (objMenu.time) {
+    private static void popupcTimer(Menu menu) {
+        switch (menu.time) {
             case 5 -> timerDisplay = 5.0;
             case 15 -> timerDisplay = 15.0;
             case 30 -> timerDisplay = 30.0;
@@ -168,14 +167,14 @@ public class Gameplay {
             timeLabel.setText(String.format("%.1f", timerDisplay));
         });
     }
-    private static void popupc() { // this is the window that shows timer and counts windows closed
+    private static void popupc(Menu menu) { // this is the window that shows timer and counts windows closed
         File file = new File("assets/sounds/vslancer.wav");
         AudioPlayer.setAudio(file);
         AudioPlayer.playAudio(true);
 
         ppcf = new JFrame("Counter");
         ppcf.setSize(425, 400);
-        ppcf.setLocation(SwingExtras.JFrameRandomX(425), SwingExtras.JFrameRandomY(400));
+        ppcf.setLocation(SwingExtras.jframeRandomX(425), SwingExtras.jframeRandomY(400));
         JPanel ppcp = new JPanel(new BorderLayout());
         ppcp.setBackground(Color.DARK_GRAY);
         
@@ -209,7 +208,7 @@ public class Gameplay {
             }
         });
         ppcf.setVisible(true);
-        popupcTimer();
+        popupcTimer(menu);
         timerc.start();
     }
     public static void popupcReinitialize() {
@@ -220,7 +219,7 @@ public class Gameplay {
         ImageIcon THISFUCKINGIMAGEICON = new ImageIcon("assets/icon.png");
         theuhhhframeyeah.setIconImage(THISFUCKINGIMAGEICON.getImage());
         theuhhhframeyeah.setSize(425, 400);
-        theuhhhframeyeah.setLocation(SwingExtras.JFrameRandomX(425), SwingExtras.JFrameRandomY(400));
+        theuhhhframeyeah.setLocation(SwingExtras.jframeRandomX(425), SwingExtras.jframeRandomY(400));
         JPanel goddamnasspanel = new JPanel(new BorderLayout());
         goddamnasspanel.setBackground(Color.DARK_GRAY);
 
@@ -240,12 +239,12 @@ public class Gameplay {
         theuhhhframeyeah.setVisible(true);
     }
 
-    private static JFrame[] popupFrames;
+
 
     private static void win(Menu menu) {
         DataStuff data = new DataStuff();
         data.dataingStuff(menu);
-        totalFrame();
+        JFrame[] popupFrames = totalFrame();
         gameplayTimer.stop();
         SwingExtras.frameDisposeAll(popupFrames);
         if(theuhhhframeyeah!=null){theuhhhframeyeah.dispose();}
@@ -255,27 +254,28 @@ public class Gameplay {
     }
 
     
-    private static void totalFrame() {
-        popupFrames = new JFrame[10];
+    private static JFrame[] totalFrame() {
+        JFrame[] frames = new JFrame[10];
         {
-            popupFrames[0] = popups.pp0f;
-            popupFrames[1] = popups.pp1f;
-            popupFrames[2] = popups.pp2f;
-            popupFrames[3] = popups.pp3f;
-            popupFrames[4] = popups.pp4f;
-            popupFrames[5] = popups.pp5f;
-            popupFrames[6] = popups.pp6f;
-            popupFrames[7] = popups.pp7f;
-            popupFrames[8] = popups.pp8f;
-            popupFrames[9] = popups.pp9f;
+            frames[0] = popups.pp0f;
+            frames[1] = popups.pp1f;
+            frames[2] = popups.pp2f;
+            frames[3] = popups.pp3f;
+            frames[4] = popups.pp4f;
+            frames[5] = popups.pp5f;
+            frames[6] = popups.pp6f;
+            frames[7] = popups.pp7f;
+            frames[8] = popups.pp8f;
+            frames[9] = popups.pp9f;
         }
+        return frames;
     }
 
 
     public static void retard(Menu menu) {
         try{
             if(gameplayTimer!=null){gameplayTimer.stop();}
-            totalFrame();
+            JFrame[] popupFrames = totalFrame();
             SwingExtras.frameDisposeAll(popupFrames);
             AudioPlayer.stopAudio();
             File thefile = new File("assets/sounds/fail.wav");

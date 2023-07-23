@@ -391,7 +391,7 @@ public class Menu {
             try{
                 File bgmusic = new File("assets/sounds/sans.wav");
                 AudioPlayer.setAudio(bgmusic);
-                //AudioPlayer.playAudio(true);
+                AudioPlayer.playAudio(true);
             } catch(Exception e) {
                 ExceptionHandler.handleException(e);
             }
@@ -416,7 +416,6 @@ public class Menu {
          * idk im feeling lazy to add highSLabel() to every single
          * jbutton action listener
          */
-        System.out.println(time + " " + diff);
     }
     private void highSLabel() {
         int arrayLoc = 0;

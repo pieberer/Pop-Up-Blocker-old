@@ -14,12 +14,12 @@ public class SwingExtras {
         }
     }
     private static Random random = new Random();
-    public static int JFrameRandomX(int length) {
+    public static int jframeRandomX(int length) {
         int swidth = ScreenDimensions.getWidth();
         int x = random.nextInt(swidth - length);
         return x;
     }
-    public static int JFrameRandomY(int height) {
+    public static int jframeRandomY(int height) {
         int sheight = ScreenDimensions.getHeight();
         int y = random.nextInt(sheight - height);
         return y;
