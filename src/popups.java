@@ -22,7 +22,6 @@ public class popups {
     public static JFrame pp7f;
     public static JFrame pp8f;
     public static JFrame pp9f;
-
     protected static void popup0() {
         pp0f = new JFrame("HOT CHICKS");
         pp0f.setSize(348, 275);
@@ -134,9 +133,23 @@ public class popups {
         pp3f.setVisible(true);
     }
     protected static void popup4() {
-        pp4f = new JFrame();
+        pp4f = new JFrame("you have virus");
+        pp4f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp4p = new JPanel();
-        pp4p.setLayout(null);
+        pp4p.setLayout(new BorderLayout());
+
+        ImageIcon viruses = new ImageIcon("assets/textures/popups/virus.png");
+        JLabel godDamnItIntellijStopTryingToFixMyDamnFreakingSpellingDontTryToBecomeGrammarlyLookIDidntPlaceAnApostropheThatsBecauseICantPlaceOneAlrightNowIntellijPleaseShutUpAlrightGoFuckYourselfNOW
+                = new JLabel(viruses);
+        godDamnItIntellijStopTryingToFixMyDamnFreakingSpellingDontTryToBecomeGrammarlyLookIDidntPlaceAnApostropheThatsBecauseICantPlaceOneAlrightNowIntellijPleaseShutUpAlrightGoFuckYourselfNOW
+                .addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        Gameplay.retard(menu);
+                    }
+                });
+
+        pp4p.add(godDamnItIntellijStopTryingToFixMyDamnFreakingSpellingDontTryToBecomeGrammarlyLookIDidntPlaceAnApostropheThatsBecauseICantPlaceOneAlrightNowIntellijPleaseShutUpAlrightGoFuckYourselfNOW, BorderLayout.CENTER);
         pp4f.add(pp4p);
         pp4f.addWindowListener(new WindowAdapter() {
             @Override
@@ -148,6 +161,7 @@ public class popups {
     }
     protected static  void popup5() {
         pp5f = new JFrame();
+        pp5f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp5p = new JPanel();
         pp5p.setLayout(null);
         pp5f.add(pp5p);
@@ -161,6 +175,7 @@ public class popups {
     }
     protected static void popup6() {
         pp6f = new JFrame();
+        pp6f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp6p = new JPanel();
         pp6p.setLayout(null);
         pp6f.add(pp6p);
@@ -174,6 +189,7 @@ public class popups {
     }
     protected static void popup7() {
         pp7f = new JFrame();
+        pp7f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp7p = new JPanel();
         pp7p.setLayout(null);
         pp7f.add(pp7p);
@@ -187,6 +203,7 @@ public class popups {
     }
     protected static void popup8() {
         pp8f = new JFrame();
+        pp8f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp8p = new JPanel();
         pp8p.setLayout(null);
         pp8f.add(pp8p);
@@ -200,6 +217,7 @@ public class popups {
     }
     protected static void popup9() {
         pp9f = new JFrame();
+        pp9f.setLocation(SwingExtras.JFrameRandomX(348), SwingExtras.JFrameRandomY(275));
         JPanel pp9p = new JPanel();
         pp9p.setLayout(null);
         pp9f.add(pp9p);

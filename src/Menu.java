@@ -27,7 +27,7 @@ public class Menu {
     
     private int highs = 0;
 
-    public void GUI(Menu menu){ // make it accept menu object
+    public void GUI(Menu menu){
         // most important
         DataStuff.dataLoad();
         try{
