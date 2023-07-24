@@ -1,4 +1,4 @@
-package QoLTools;
+package qoltools;
 import java.io.File;
 import javax.sound.sampled.*;
 

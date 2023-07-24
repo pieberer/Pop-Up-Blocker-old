@@ -1,11 +1,5 @@
 import javax.swing.*;
-
-import QoLTools.AudioPlayer;
-import QoLTools.ExceptionHandler;
-import QoLTools.Randomizer;
-import QoLTools.ScreenDimensions;
-import QoLTools.SwingExtras;
-
+import qoltools.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -276,8 +270,10 @@ public class Gameplay {
         try{
             if(gameplayTimer!=null){gameplayTimer.stop();}
             JFrame[] popupFrames = totalFrame();
+            ppcf.dispose();
             SwingExtras.frameDisposeAll(popupFrames);
             AudioPlayer.stopAudio();
+
             File thefile = new File("assets/sounds/fail.wav");
             AudioPlayer.setAudio(thefile);
             AudioPlayer.playAudio(false);

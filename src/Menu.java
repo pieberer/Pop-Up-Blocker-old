@@ -1,8 +1,8 @@
 import javax.swing.*;
 
-import QoLTools.AudioPlayer;
-import QoLTools.ExceptionHandler;
-import QoLTools.ScreenDimensions;
+import qoltools.AudioPlayer;
+import qoltools.ExceptionHandler;
+import qoltools.ScreenDimensions;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -13,6 +13,7 @@ public class Menu {
     private JPanel mainp;
     private JLabel subtitle;
     private JButton start;
+    private JLabel mainLHSa;
     private JLabel mainLHSb;
     private JLabel timerTitle;
     private JLabel diffTitle;
@@ -51,7 +52,6 @@ public class Menu {
             JLabel title;
             JLabel description;
             JButton extras;
-            JLabel mainLHSa;
             {
                 title = new JLabel("Pop Up Blocker");
                 title.setHorizontalAlignment(SwingConstants.CENTER);
@@ -418,7 +418,7 @@ public class Menu {
          */
     }
     private void highSLabel() {
-        int arrayLoc = 0;
+        int arrayLoc = -1;
         for(int a = 1; a < 6; a++) {
             for(int b = 1; b < 5; b++) {
                 arrayLoc++;
@@ -433,6 +433,7 @@ public class Menu {
                 }
             }
         } // epic nesting
+        mainLHSa.setText("Highscore (time = " + time + " + diff = " + diff + "):");
         mainLHSb.setText(String.valueOf(highs));
     }
     private void mouseExitTimer() {

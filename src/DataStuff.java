@@ -1,19 +1,14 @@
 import javax.swing.*;
 
-import QoLTools.AudioPlayer;
-import QoLTools.ExceptionHandler;
-import QoLTools.ScreenDimensions;
+import qoltools.AudioPlayer;
+import qoltools.ExceptionHandler;
+import qoltools.ScreenDimensions;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
 public class DataStuff {
-    public static void main(String[] args) {
-        Menu menu = new Menu();
-        winningScreen(menu);
-    }
-
     public void dataingStuff(Menu menu) {
         SwingUtilities.invokeLater(() -> {
             try{
@@ -81,26 +76,38 @@ public class DataStuff {
             ObjectOutputStream obejctOut = new ObjectOutputStream(fileOut)) {
                 Menu menu = new Menu();
                 int arrayLoc = -1;
+                int what = 0;
                 Integer[] highSData = new Integer[20];
-                if(loadedHighS == null) {
-                    for(int e=0;e<20;e++){highSData[e]=0;}
-                } else {
-                    highSData = loadedHighS;
-                }
-                
-                /* making sure nothing goes wrong
-                * HEY NO CHEATING
-                */
+
+                if(loadedHighS != null) { highSData = loadedHighS; }
 
                 for (int l = 1; l < 6; l++) {
+                    switch(l) {
+                        case 1 -> what = 5;
+                        case 2 -> what = 15;
+                        case 3 -> what = 30;
+                        case 4 -> what = 45;
+                        case 5 -> what = 60;
+                    }
                     for (int bruh = 1; bruh < 5; bruh++) {
                         arrayLoc++;
-                        if(l == menu.time) {
+                        if(what == menu.time) {
                             if (bruh == menu.diff) {
                                 if (Gameplay.closed > highSData[arrayLoc]) {
                                     highSData[arrayLoc] = Gameplay.closed;
                                 }
+                            } else {
+                                if(highSData[arrayLoc] != null) {
+                                    highSData[arrayLoc] = 0;
+                                }
                             }
+                        } else {
+                            if(highSData[arrayLoc] != null) {
+                                highSData[arrayLoc] = 0;
+                            }
+                            /* making sure nothing goes wrong
+                             * HEY NO CHEATING
+                             */
                         }
                     }
                 }
@@ -121,9 +128,12 @@ public class DataStuff {
                         loadedHighS = (Integer[]) in.readObject();
                         in.close();
                         fileIn.close();
-                    }catch(Exception ignore){}
+                    }catch(Exception e){ExceptionHandler.handleException(e);}
                 }catch(Exception eee){ExceptionHandler.handleException(eee);}
             }catch(Exception e){ExceptionHandler.handleException(e);}
+            for(int e = 0; e < 20; e++) {
+                System.out.println(loadedHighS[e]);
+            }
         }catch(Exception ee){ExceptionHandler.handleException(ee);}
     }
 }

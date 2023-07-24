@@ -1,5 +1,5 @@
 import javax.swing.SwingUtilities;
-import QoLTools.ExceptionHandler;
+import qoltools.ExceptionHandler;
 
 public class Main {
     public static void main(String[] args) {

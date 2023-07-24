@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-import QoLTools.SwingExtras;
+import qoltools.SwingExtras;
 import java.awt.event.*;
 import java.awt.*;
 import java.net.URI;
