@@ -3,6 +3,7 @@ import javax.swing.*;
 import qoltools.AudioPlayer;
 import qoltools.ExceptionHandler;
 import qoltools.ScreenDimensions;
+import qoltools.SwingExtras;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -18,6 +19,18 @@ public class DataStuff {
     }
 
     private static void winningScreen(Menu menu) {
+        JFrame[] theframes = new JFrame[10];
+        theframes[0] = popups.pp0f;
+        theframes[1] = popups.pp1f;
+        theframes[2] = popups.pp2f;
+        theframes[3] = popups.pp3f;
+        theframes[4] = popups.pp4f;
+        theframes[5] = popups.pp5f;
+        theframes[6] = popups.pp6f;
+        theframes[7] = popups.pp7f;
+        theframes[8] = popups.pp8f;
+        theframes[9] = popups.pp9f;
+        SwingExtras.frameDisposeAll(theframes);
         /* I tried. I tried. But I can't
          * I tried to install javafx to play the video for the yippee, but I couldn't.
          * It was simply too hard for me to understand.
@@ -64,22 +77,25 @@ public class DataStuff {
             public void windowClosing(WindowEvent e) {
                 AudioPlayer.stopAudio();
                 menu.GUI(menu);
-                dataSave();
+                dataSave(menu);
             }
         });
         frae.getContentPane().add(panl);
         frae.setVisible(true);
     }    
 
-    private static void dataSave() {
+    private static void dataSave(Menu menu) {
         try (FileOutputStream fileOut = new FileOutputStream("highscores.ser");
             ObjectOutputStream obejctOut = new ObjectOutputStream(fileOut)) {
-                Menu menu = new Menu();
                 int arrayLoc = -1;
                 int what = 0;
                 Integer[] highSData = new Integer[20];
 
                 if(loadedHighS != null) { highSData = loadedHighS; }
+
+                /* making sure nothing goes wrong
+                 * HEY NO CHEATING
+                 */
 
                 for (int l = 1; l < 6; l++) {
                     switch(l) {
@@ -96,18 +112,7 @@ public class DataStuff {
                                 if (Gameplay.closed > highSData[arrayLoc]) {
                                     highSData[arrayLoc] = Gameplay.closed;
                                 }
-                            } else {
-                                if(highSData[arrayLoc] != null) {
-                                    highSData[arrayLoc] = 0;
-                                }
                             }
-                        } else {
-                            if(highSData[arrayLoc] != null) {
-                                highSData[arrayLoc] = 0;
-                            }
-                            /* making sure nothing goes wrong
-                             * HEY NO CHEATING
-                             */
                         }
                     }
                 }
@@ -117,6 +122,7 @@ public class DataStuff {
     }
     public static Integer[] loadedHighS;
     public static void dataLoad() {
+        File file = new File("highscores.ser");
         try{
             FileInputStream fileIn;
             ObjectInputStream in;
@@ -128,12 +134,9 @@ public class DataStuff {
                         loadedHighS = (Integer[]) in.readObject();
                         in.close();
                         fileIn.close();
-                    }catch(Exception e){ExceptionHandler.handleException(e);}
+                    }catch(Exception ignored){}
                 }catch(Exception eee){ExceptionHandler.handleException(eee);}
             }catch(Exception e){ExceptionHandler.handleException(e);}
-            for(int e = 0; e < 20; e++) {
-                System.out.println(loadedHighS[e]);
-            }
         }catch(Exception ee){ExceptionHandler.handleException(ee);}
     }
 }

@@ -32,6 +32,7 @@ public class Menu {
         // most important
         DataStuff.dataLoad();
         try{
+            if(start != null) {startJBCol();}
             // frame
             mainf = new JFrame("Pop Up Blocker");
             ImageIcon icon = new ImageIcon("assets/icon.png");
@@ -364,18 +365,17 @@ public class Menu {
                 changelog.setBounds(275, 475, 250, 250);
                 changelog.setForeground(Color.WHITE);
 
-                // TODO: these gifs
-                JLabel pieb = new JLabel("pieb gif goes here");
-                pieb.setBounds(385, 50, 200, 15);
-                pieb.setForeground(Color.WHITE);
+                ImageIcon piebGif = new ImageIcon("assets/textures/pieb.gif");
+                JLabel pieb = new JLabel(piebGif);
+                pieb.setBounds(385, 50, piebGif.getIconWidth(), piebGif.getIconHeight());
 
                 ImageIcon tobyGif = new ImageIcon("assets/textures/toby.gif");
                 JLabel toby = new JLabel(tobyGif);
-                toby.setBounds(450, 150, toby.getIcon().getIconWidth(), toby.getIcon().getIconHeight());
+                toby.setBounds(450, 175, toby.getIcon().getIconWidth(), toby.getIcon().getIconHeight());
 
-                JLabel chatgpt = new JLabel("chatgpt gif goes here");
-                chatgpt.setBounds(150, 250, 200, 15);
-                chatgpt.setForeground(Color.WHITE);
+                ImageIcon chatgptGif = new ImageIcon("assets/textures/chatgpt.gif");
+                JLabel chatgpt = new JLabel(chatgptGif);
+                chatgpt.setBounds(150, 250, chatgptGif.getIconWidth(), chatgptGif.getIconHeight());
                 // finishing the panel (i dont use array, im not cool)
                 {
                     mainp2.add(p2Back);
@@ -418,21 +418,45 @@ public class Menu {
          */
     }
     private void highSLabel() {
-        int arrayLoc = -1;
-        for(int a = 1; a < 6; a++) {
-            for(int b = 1; b < 5; b++) {
-                arrayLoc++;
-                if(a == time) {
-                    if(b == diff) {
-                        try{
-                            if(DataStuff.loadedHighS[arrayLoc] != null) {
-                                highs = DataStuff.loadedHighS[arrayLoc];
-                            }
-                        }catch(Exception ignored){}
-                    }
+        // im tired of using for()
+        switch(time) {
+            case 5 -> {
+                switch(diff) {
+                    case 1 -> highs = DataStuff.loadedHighS[0];
+                    case 2 -> highs = DataStuff.loadedHighS[1];
+                    case 3 -> highs = DataStuff.loadedHighS[2];
+                    case 4 -> highs = DataStuff.loadedHighS[3];
+                }
+            } case 15 -> {
+                switch(diff) {
+                    case 1 -> highs = DataStuff.loadedHighS[4];
+                    case 2 -> highs = DataStuff.loadedHighS[5];
+                    case 3 -> highs = DataStuff.loadedHighS[6];
+                    case 4 -> highs = DataStuff.loadedHighS[7];
+                }
+            } case 30 -> {
+                switch(diff) {
+                    case 1 -> highs = DataStuff.loadedHighS[8];
+                    case 2 -> highs = DataStuff.loadedHighS[9];
+                    case 3 -> highs = DataStuff.loadedHighS[10];
+                    case 4 -> highs = DataStuff.loadedHighS[11];
+                }
+            } case 45 -> {
+                switch(diff) {
+                    case 1 -> highs = DataStuff.loadedHighS[12];
+                    case 2 -> highs = DataStuff.loadedHighS[13];
+                    case 3 -> highs = DataStuff.loadedHighS[14];
+                    case 4 -> highs = DataStuff.loadedHighS[15];
+                }
+            } case 60 -> {
+                switch(diff) {
+                    case 1 -> highs = DataStuff.loadedHighS[16];
+                    case 2 -> highs = DataStuff.loadedHighS[17];
+                    case 3 -> highs = DataStuff.loadedHighS[18];
+                    case 4 -> highs = DataStuff.loadedHighS[19];
                 }
             }
-        } // epic nesting
+        }
         mainLHSa.setText("Highscore (time = " + time + " + diff = " + diff + "):");
         mainLHSb.setText(String.valueOf(highs));
     }

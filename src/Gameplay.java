@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.net.*;
 
-// haha pp
+@SuppressWarnings("ALL")
 public class Gameplay {
     public static int closed = 0;
     private static int loops;
@@ -14,10 +14,9 @@ public class Gameplay {
 
     public void game(Menu menu) { // the actual gameplay
         try{ // god help me
-            int diff = menu.diff;
-            int time = menu.time;
-            loops = loopCalc(diff, time);
-            delay = delayCalc(diff);
+            closed = 0;
+            loops = loopCalc(menu.diff, menu.time);
+            delay = delayCalc(menu.diff);
 
             countdown(menu);
         }catch(Exception e){ExceptionHandler.handleException(e);}
@@ -52,10 +51,7 @@ public class Gameplay {
                 }
 
                 if (menu.diff == 1) {
-                    if (loops == 2 && menu.time == 5) {
-                    } else if (menu.time == 15 && loops == 15) {
-                    } else if (menu.time == 45 && loops == 45) {
-                    } else {
+                    if(loops==2&&menu.time==5){}else if(menu.time==15&&loops==15){}else if(menu.time==45&&loops==45){}else{
                         try {
                             Thread.sleep(1000);
                         } catch (Exception ex) {
@@ -270,7 +266,7 @@ public class Gameplay {
         try{
             if(gameplayTimer!=null){gameplayTimer.stop();}
             JFrame[] popupFrames = totalFrame();
-            ppcf.dispose();
+            if(ppcf!=null){ppcf.dispose();}else{theuhhhframeyeah.dispose();}
             SwingExtras.frameDisposeAll(popupFrames);
             AudioPlayer.stopAudio();
 
@@ -304,64 +300,62 @@ public class Gameplay {
     }
 
     private static int loopCalc(int lcDiff, int lcTime) {
-        int l = 0;
         if(lcTime == 5 && lcDiff == 1) {
-            l = 2;
+            return 2;
         } else if(lcTime == 5 && lcDiff == 2) {
-            l = 5;
+            return 5;
         } else if(lcTime == 5 && lcDiff == 3) {
-            l = 10;
+            return 10;
         } else if(lcTime == 5 && lcDiff == 4) {
-            l = 50;
+            return 50;
         }
         else if(lcTime == 15 && lcDiff == 1) {
-            l = 7;
+            return 7;
         } else if(lcTime == 15 && lcDiff == 2) {
-            l = 15;
+            return 15;
         } else if(lcTime == 15 && lcDiff == 3) {
-            l = 30;
+            return 30;
         } else if(lcTime == 15 && lcDiff == 4) {
-            l = 150;
+            return 150;
         }
         else if(lcTime == 30 && lcDiff == 1) {
-            l = 15;
+            return 15;
         } else if(lcTime == 30 && lcDiff == 2) {
-            l = 30;
+            return 30;
         } else if(lcTime == 30 && lcDiff == 3) {
-            l = 60;
+            return 60;
         } else if(lcTime == 30 && lcDiff == 4) {
-            l = 300;
+            return 300;
         }
         else if(lcTime == 45 && lcDiff == 1) {
-            l = 22;
+            return 22;
         } else if(lcTime == 45 && lcDiff == 2) {
-            l = 45;
+            return 45;
         } else if(lcTime == 45 && lcDiff == 3) {
-            l = 90;
+            return 90;
         } else if(lcTime == 45 && lcDiff == 4) {
-            l = 450;
+            return 450;
         }
         else if(lcTime == 60 && lcDiff == 1) {
-            l = 30;
+            return 30;
         } else if(lcTime == 60 && lcDiff == 2) {
-            l = 60;
+            return 60;
         } else if(lcTime == 60 && lcDiff == 3) {
-            l = 120;
+            return 120;
         } else if(lcTime == 60 && lcDiff == 4) {
-            l = 600;
+            return 600;
         } else {
-            System.out.println("Something's wrong in the loops calculator.");
-            System.out.println("The time: " + lcTime + " and the difficulty: " + lcDiff);
-        } // for debugging
-        return l;
+            System.out.println("HOW DID YOU EVEN");
+            return 0;
+        }
     }
     private static int delayCalc(int dcDiff) {
         int d = 0;
         switch (dcDiff) {
-            case (1), (2) -> d = 1000;
-            case (3) -> d = 500;
-            case (4) -> d = 100;
-            default -> System.out.println("Something's wrong in the difficulty calculator.");
+            case 1, 2 -> d = 1000;
+            case 3 -> d = 500;
+            case 4 -> d = 100;
+            default -> System.out.println("bruh");
         }
         return d;
     }
