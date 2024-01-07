@@ -11,3 +11,5 @@ dw im using javafx in my future projects <3
 NOTE
 =
 This is the older version of Pop Up Blocker. I had trouble with installing Gradle so ended up making new repo. Yes there's probably a way to just... well yeah but I don't give a fuck. If it works it works
+
+*Never say that again. Especially in programming.*
